@@ -6,7 +6,7 @@ def get_wikipedia_page(word):
     page = wiki_wiki.page(word)
     return page if page.exists() else None
 
-def generate_words(genres):
+def generate_genres_and_words(genres):
     genre_words = {
     
        "animals": [
@@ -30,13 +30,13 @@ def generate_words(genres):
             "field", "fencing", "snowboarding", "volleyball", "golf"
         ],
         "foods": [
-                "icecream", "macaron", "burger", "pizza", "fried", "bread", "waffle",
-                "cake", "sorbet", "cookie", "noodle", "gelato", "juice", "soup",
-                "casserole", "curry", "quiche", "salad", "tiramisu", "mousse", "sushi",
-                "grilled", "omelette", "pie", "chocolate", "dumpling", "roast", "tapioca",
-                "pudding", "stew", "coffee", "croissant", "sashimi", "cheese", "pancake",
-                "sandwich", "donut", "muffin", "bagel", "smoothie", "brownie", "samosa",
-                "tacos", "crepe", "yogurt", "baked", "pasta", "tea"
+            "icecream", "macaron", "burger", "pizza", "fried", "bread", "waffle",
+            "cake", "sorbet", "cookie", "noodle", "gelato", "juice", "soup",
+            "casserole", "curry", "quiche", "salad", "tiramisu", "mousse", "sushi",
+            "grilled", "omelette", "pie", "chocolate", "dumpling", "roast", "tapioca",
+            "pudding", "stew", "coffee", "croissant", "sashimi", "cheese", "pancake",
+            "sandwich", "donut", "muffin", "bagel", "smoothie", "brownie", "samosa",
+            "tacos", "crepe", "yogurt", "baked", "pasta", "tea"
         ],
 
         "professions": [
@@ -83,19 +83,32 @@ def generate_words(genres):
 
     }
 
-    genre = random.choice(genres)
-    words = genre_words.get(genre, [])
+    playing_genre = random.choice(genres)
+    words = genre_words.get(playing_genre, [])
+
+    starting_genre = random.choice([genre for genre in genres if genre != playing_genre])
     
     word1, word2 = random.sample(words, 2)
 
-    return genre, word1, word2
+    return playing_genre, starting_genre, word1, word2
 
+    # playing_genre = random.choice(genres)
+
+    # remaining_genres = [genre for genre in genres if genre != playing_genre]
+    # starting_genre = random.choice(remaining_genres)
+
+    # words = generate_genres_and_words.get(playing_genre, [])
+    
+    # word1, word2 = random.sample(words, 2)
+
+    # return  playing_genre, starting_genre, word1, word2
 
 
 # test 
 
-genre, word1, word2 = generate_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
-print(f"Category: {genre}")
+playing_genre, starting_genre, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+print(f"Category: {playing_genre}")
+print(f"Starting category: {starting_genre}")
 print(f"Words: {word1}, {word2}")
 
 
