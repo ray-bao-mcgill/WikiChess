@@ -1,3 +1,4 @@
+/* torreyLocalGameBlack.css */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -64,18 +65,30 @@ body {
     height: 150%;
 }
 
-.wiki-button {
+.wiki-button, .timer {
+    width: 150px; /* Fixed width for both elements */
+    height: 50px; /* Fixed height for both elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #a8dadc;
     border: 2px solid #1d3557;
     border-radius: 10px;
-    padding: 10px 20px;
     font-size: 1.2em;
     color: #1d3557;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .wiki-button:hover {
     background-color: #f1faee;
+}
+
+.timer {
+    background-color: #e63946;
+    color: #f1faee;
+    font-size: 1.5em;
+    pointer-events: none;
 }
 
 .chess-piece img {
@@ -95,15 +108,4 @@ body {
 
 .similarity-score p {
     margin: 5px 0;
-}
-
-.timer {
-    background-color: #e63946;
-    color: #f1faee;
-    padding: 10px;
-    border-radius: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 1.5em;
-    box-sizing: border-box;
 }
