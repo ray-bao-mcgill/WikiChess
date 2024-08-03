@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="static/css/torrey.css">
+
+<div class="background-image">
+    <img src="static/images/bgenhanced.png" alt="Background" style="
+        position: absolute;
+        top: 0;
+        left:10%;
+        width: 80%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(0px); 
+    ">
+</div>
+
+<div class="homeContent">
+    <h1 class="title" id="wikichess-title">
+        <span class="highlight first-letter large">W</span>IKI<span class="highlight first-letter large">C</span>HESS
+    </h1>
+    <div class="buttons">
+        <div class="button">
+            <span class="button-text" onclick="localPlay()">Local Play!!</span>
+        </div>
+        <div class="button">
+            <span class="button-text" onclick="onlinePlay()">Online Play!!</span>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function localPlay() {
+        // Add your local play functionality here
+       window.location.href = 'http://127.0.0.1:5000/local';
+    }
+
+    function onlinePlay() {
+        // Add your online play functionality here
+        window.location.href = 'http://127.0.0.1:5000/online';
+    }
+</script>
+
+{% endblock %}

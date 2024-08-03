@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <iframe src="https://en.wikipedia.org/wiki/Main_Page" frameborder="0"></iframe>
+</body>
+<script>
+setInterval(() => {
+    const url = 'https://corsproxy.io/?' + encodeURIComponent('https://api.domain.com/...');
+    var iframe = document.querySelector('iframe').src = url;
+    console.log(iframe.contentWindow.document.body.innerHTML);
+}, 1000);
+
+</script>
+</html>

@@ -1,0 +1,94 @@
+body {
+    font-family: 'Linux Libertine O', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+    background-color: #0775a8;
+    animation: change-background 3s infinite linear;
+}
+
+.homeContent {
+    text-align: center;
+    z-index: 3;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.title {
+    font-size: 5em;
+    color: white;
+    margin: 0;
+    font-family: 'Linux Libertine O', sans-serif;
+    cursor: pointer;
+    transition: color 0.3s, text-decoration 0.3s;
+    position: relative;
+    padding: 10px; /* Adds space around text */
+    background: #005796; /* Semi-transparent white background */
+    border-radius: 10px; /* Rounded corners */
+    line-height: 1.5; /* Adjust this value to make the height taller */
+}
+
+.title:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.highlight {
+    font-size: 1.5em;
+    vertical-align: middle;
+    position: relative;
+    top: -0.16em;
+}
+
+.first-letter {
+    font-size: 1.5em; /* Base size for first-letter highlight */
+}
+
+.large {
+    font-size: 1.8em; /* Larger size for specific letters */
+}
+
+.subtitle {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0 30px;
+    font-family: 'Linux Libertine O', sans-serif;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    position: relative;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #005796;
+    border-radius: 15px; /* Makes the edges rounder */
+    margin: 10px 0;
+    width: 200px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for scaling effect */
+    border: 2px solid white; /* Optional border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
+}
+
+.button:hover {
+    background-color: #052e4b;
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.button-text {
+    font-size: 1.8em;
+    color:white;
+    font-family: 'Linux Libertine O', sans-serif;
+}

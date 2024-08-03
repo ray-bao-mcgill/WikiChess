@@ -1,0 +1,78 @@
+body {
+    font-family: 'Linux Libertine O', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #d4e2f0;
+    animation: change-background 3s infinite linear;
+}
+
+.homeContent {
+    text-align: center;
+    z-index: 3;
+    position: relative;
+}
+
+.title {
+    font-size: 6em;
+    color: black;
+    margin: 0;
+    font-family: 'Linux Libertine O', sans-serif;
+    cursor: pointer;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.title:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.highlight {
+    font-size: 1.5em;
+    vertical-align: middle;
+    position: relative;
+    top: -0.16em;
+}
+
+.first-letter {
+    margin-right: -0.10em; /* Adjust this value to bring the W closer */
+}
+
+.subtitle {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0 30px;
+    font-family: 'Linux Libertine O', sans-serif;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    position: relative;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #c1d3e0;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 200px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #9eadb8;
+}
+
+.button-text {
+    font-size: 1.5em;
+    color: #333;
+    font-family: 'Linux Libertine O', sans-serif;
+}
+
