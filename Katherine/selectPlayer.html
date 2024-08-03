@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="selectPlayer.css">
+    <title>Local Play Game</title>
+</head>
+<body>
+    <div class="game-container">
+        <div id="player1" class="player-section" onclick="selectPlayer(1)">
+            <div id="p1Content">
+                <img src="images/black_piece.png" alt="black_piece" class="player-image">
+                <div class="turn-overlay" id="word1"></div>
+            </div>
+        </div>
+        <div id="player2" class="player-section" onclick="selectPlayer(2)">
+            <div id="p2Content">
+                <img src="images/white_piece.png" alt="white_piece" class="player-image">
+                <div class="turn-overlay" id="word2"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="selectPlayer.js"></script> 
+
+</body>
+</html>
+
+
