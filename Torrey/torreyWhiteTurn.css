@@ -1,97 +1,66 @@
-:root {
-    --gradient: linear-gradient(90deg, #ddd, black, #ddd);
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh;
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.125em;
-    line-height: 1.6;
-    color: #333;
-    background: #ddd;
-    background-size: 300%;
-    background-image: var(--gradient);
-    animation: bg-animation 25s infinite;
+    height: 100vh;
     margin: 0;
-  }
-  
-  @keyframes bg-animation {
-    0% {background-position: left}
-    50% {background-position: right}
-    100% {background-position: left}
-  }
-  
-  .content {
-    background: black;
-    width: 70vw;
-    padding: 3em;
-    box-shadow: 0 0 3em rgba(255,255,255);
+    background-color: #fff;
+    font-family: 'Linux Libertine O', sans-serif;
+}
+
+.container {
     text-align: center;
-  }
-  
-  .title {
-    margin: 0 0 .5em;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-style: italic;
-    font-size: 3rem;
-    color: #ddd;
-    line-height: .8;
-    background-image: var(--gradient);
-    background-clip: text;
-    color: transparent;
-    background-size: 300%;
-    transition: background-position 1s;
-  }
-  
-  .title:hover {
-    background-position: right;
-  }
-  
-  .buttons {
+}
+
+.title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.arrows {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    width: 400px;
-    margin: 0 auto;
-  }
-  
-  .button {
+    margin-bottom: 20px;
     position: relative;
-    cursor: pointer;
-    padding: 10px 20px;
-    background: var(--gradient);
-    background-size: 300%;
-    background-position: left;
-    color: white;
-    border-radius: 5px;
-    transition: background-position 350ms;
-  }
-  
-  .button:hover {
-    background-position: right;
-  }
-  
-  .button .arrow {
-    display: none;
+}
+
+.arrow {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+.arrow-left {
+    border-top: 20px solid black;
+    transform: rotate(-45deg);
     position: absolute;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .button:hover .arrow {
-    display: block;
-    border-bottom: 10px solid white;
-  }
-  
-  .button-text {
+    left: 30%;
+}
+
+.arrow-right {
+    border-top: 20px solid black;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 30%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: #d3d3d3;
+    border: none;
+    padding: 10px 20px;
     font-size: 1.5em;
-  }
-  
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #a9a9a9;
+}
