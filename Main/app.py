@@ -5,7 +5,7 @@ from string import ascii_uppercase
 import requests
 from bs4 import BeautifulSoup
 import localGame as lg
-import generator as gen
+from generator import generate_genres_and_words
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretKey"
 socketio = SocketIO(app)
@@ -17,8 +17,8 @@ game = lg.LocalGame()
 # Function to scrape the Wikipedia page for its HTML content and remove language elements
 def scrape_wikipedia_page(url):
     response = requests.get(url)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, 'html.parser')
+    if response.status_code == 200: # if successful 
+        soup = BeautifulSoup(response.text, 'html.parser') #parse html content of the page 
 
         # Remove the sidebar with languages
         if soup.find(id="p-lang"):
@@ -29,8 +29,8 @@ def scrape_wikipedia_page(url):
             lang_link.decompose()
 
         # Extract the main content of the Wikipedia page
-        content = soup.find(id="mw-content-text")
-        return str(content)
+        content = soup.find(id="mw-content-text") #via id 
+        return str(content) #cleaned up html content of wiki page w/out lang elements 
     else:
         return "<p>Error: Unable to fetch the page.</p>"
 
@@ -52,13 +52,13 @@ def index():
 
 @app.route("/local")
 def local():
-    genre, word1, word2 = gen.generate_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+    playing_genre,starting_genre, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
     game.set_target1(word1)
     game.set_target2(word2)
-    return render_template("local.html", word1=word1, word2=word2, genre=genre)
+    return render_template("local.html", word1=word1, word2=word2, genre1 = starting_genre, genre2 = playing_genre)
 
 @app.route("/online", methods=["POST", "GET"])
-def online():
+def online():   
     session.clear()
     if request.method == "POST":
         name = request.form.get("name")
@@ -95,15 +95,17 @@ def room():
 
 @app.route("/localGame", methods=['GET', 'POST'])
 def localGame():
-    html_content = None
-    if request.method == 'POST':
-        url = request.form['url']
-        if url.startswith('/wiki/'):
-            url = "https://en.wikipedia.org" + url
-        html_content = scrape_wikipedia_page(url)
-    return render_template('localGame.html', html_content=html_content,
-                            moves1=game.get_past_moves1(),
-                            moves2=game.get_past_moves2())
+
+    playing_genre, starting_word, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+    starting_url = "https://en.wikipedia.org/wiki/" + starting_word
+
+    html_content = scrape_wikipedia_page(starting_url)
+    
+    return render_template('localGame.html', html_content=html_content, 
+                           moves1=game.get_past_moves1(), 
+                           moves2=game.get_past_moves2(), 
+                           starting_genre=starting_word)
+
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
 def switchTurn():

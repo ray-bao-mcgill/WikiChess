@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wikipedia Scraper</title>
+    <title>Make Your Move.</title>
     
-    <!-- Include Wikipedia CSS -->
+    <!-- wiki CSS -->
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles&skin=vector">
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.visualEditor.desktopArticleTarget.noscript&only=styles&skin=vector">
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.cite.styles&only=styles&skin=vector">
 
-    <!-- Custom CSS to restyle the infobox -->
+    <!-- Google Font for wiki font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
         .infobox {
             width: 100%;
             max-width: 300px;
@@ -54,21 +64,103 @@
             padding: 5px 0;
             text-align: center;
         }
+
+        #timer { 
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        #slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        #past-articles {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the box */
+            width: 60%;
+            height: 60%;
+            background-color: #d4e2f0;
+            border: 2px solid #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif; /* Use wiki font */
+        }
+
+        #past-articles .column {
+        display: inline-block;
+        vertical-align: top;
+        width: 48%; 
+        margin-right: 2%;
+        }
+
+        #past-articles .column:last-child {
+            margin-right: 0;
+        }
+
+        #past-articles ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #past-articles li {
+            margin-bottom: 10px;
+        }
+        #blur-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
-    <h1>Wikipedia Page Scraper</h1>
-    
-    <form method="POST">
-        <label for="url">Enter Wikipedia URL or /wiki/Page_Title:</label><br>
-        <input type="text" id="url" name="url" required><br><br>
-        <input type="submit" value="Scrape">
-    </form>
+    <h1>Make Your Move.</h1>
+
+    <!-- Timer and slider bar -->
+    <div id="timer">Time Left: 00:00</div>
+    <input type="range" id="slider" min="0" max="100" value="0">
+
+    <!-- Past Articles Box -->
+    <div id="blur-background"></div>
+    <div id="past-articles">
+        <h2>Past Articles Visited:</h2>
+        <div class="column">
+            <h3>Articles</h3>
+            <ul>
+                <li>article1</li>
+                <li>article2</li>
+                <li>article3</li>
+                <li>article4</li>
+                <li>article5</li>
+        </ul>
+    </div>
+    <div class="column">
+        <h3>Semantics</h3>
+        <ul>
+            <li>semantic1</li>
+            <li>semantic2</li>
+            <li>semantic3</li>
+            <li>semantic4</li>
+            <li>semantic5</li>
+        </ul>
+    </div>
+</div>
+
     {% if moves1 %}
-    <h2>pastmoves:</h2>
+    <h2>Past Moves:</h2>
         {% for move in moves1 %}
         <p>{{ move }}</p>
-        {%endfor%}
+        {% endfor %}
     {% endif %}
     {% if html_content %}
         <h2>Scraped Content:</h2>
@@ -77,6 +169,32 @@
         </div>
     {% endif %}
 
+    <!-- JAVASCRIPT -->
+    <script>
+        // past articles visibility 
+        function showPastArticles() {
+            document.getElementById('blur-background').style.display = 'block';
+            document.getElementById('past-articles').style.display = 'block';
+        }
 
+        function hidePastArticles() {
+            document.getElementById('blur-background').style.display = 'none';
+            document.getElementById('past-articles').style.display = 'none';
+        }
+
+        // Show past articles when Tab key is pressed, hide when released
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                showPastArticles();
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.key === 'Tab') {
+                hidePastArticles();
+            }
+        });
+    </script>
 </body>
 </html>

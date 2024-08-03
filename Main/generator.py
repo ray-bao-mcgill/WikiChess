@@ -6,96 +6,121 @@ def get_wikipedia_page(word):
     page = wiki_wiki.page(word)
     return page if page.exists() else None
 
-def generate_words(genres):
+def generate_genres_and_words(genres):
+
     genre_words = {
     
-       "animals": [
-            "walrus", "spider", "squid", "frog", "pig", "sheep", "crab", "koala",
-            "butterfly", "parrot", "hawk", "beetle", "lion", "tiger", "zebra",
-            "seahorse", "chicken", "cow", "starfish", "shrimp", "giraffe", "whale",
-            "eagle", "platypus", "rat", "wolf", "turtle", "mouse", "lobster",
-            "kangaroo", "horse", "octopus", "goat", "dolphin", "squirrel", "jellyfish",
-            "seal", "shark", "elephant", "deer", "ant", "albatross", "owl",
-            "pelican", "rabbit", "fox", "bat", "snake", "bear", "duck", "penguin",
-            "lizard"
-        ],
-       "sports": [
-            "skiing", "taekwondo", "surfing", "baseball", "kayaking", "canoeing",
-            "rugby", "skateboarding", "snooker", "gymnastics", "sailing", "badminton",
-            "bowling", "judo", "shooting", "wrestling", "darts", "basketball",
-            "hockey", "swimming", "karate", "row", "mma", "climbing", "speedway",
-            "equestrian", "soccer", "fishing", "motorcycling", "triathlon", "tennis",
-            "diving", "archery", "tabletennis", "hiking", "bmx", "hunting", "cycling",
-            "marathon", "boxing", "pingpong", "pool", "rally", "cricket", "track",
-            "field", "fencing", "snowboarding", "volleyball", "golf"
-        ],
-        "foods": [
-                "icecream", "macaron", "burger", "pizza", "fried", "bread", "waffle",
-                "cake", "sorbet", "cookie", "noodle", "gelato", "juice", "soup",
-                "casserole", "curry", "quiche", "salad", "tiramisu", "mousse", "sushi",
-                "grilled", "omelette", "pie", "chocolate", "dumpling", "roast", "tapioca",
-                "pudding", "stew", "coffee", "croissant", "sashimi", "cheese", "pancake",
-                "sandwich", "donut", "muffin", "bagel", "smoothie", "brownie", "samosa",
-                "tacos", "crepe", "yogurt", "baked", "pasta", "tea"
-        ],
+    "animals": [
+        "Walrus", "Spider", "Squid", "Frog", "Pig", "Sheep", "Crab", "Koala",
+        "Butterfly", "Parrot", "Hawk", "Beetle", "Lion", "Tiger", "Zebra",
+        "Seahorse", "Chicken", "Cow", "Starfish", "Shrimp", "Giraffe", "Whale",
+        "Eagle", "Platypus", "Rat", "Wolf", "Turtle", "Mouse", "Lobster",
+        "Kangaroo", "Horse", "Octopus", "Goat", "Dolphin", "Squirrel", "Jellyfish",
+        "Seal", "Shark", "Elephant", "Deer", "Ant", "Albatross", "Owl",
+        "Pelican", "Rabbit", "Fox", "Bat", "Snake", "Bear", "Duck", "Penguin","Lizard"
+    ],
 
-        "professions": [
-            "writer", "strategist", "economist", "producer", "poet", "psychologist",
-            "scientist", "biologist", "composer", "librarian", "doctor", "politician",
-            "architect", "artist", "researcher", "philosopher", "chef", "teacher",
-            "businessman", "actor", "filmmaker", "leader", "inventor", "entrepreneur",
-            "dancer", "journalist", "nurse", "mathematician", "explorer", "pilot",
-            "athlete", "engineer", "musician", "novelist", "chemist", "historian",
-            "scholar", "lawyer", "director", "author", "painter", "philanthropist",
-            "activist"
-        ],
+    "sports": [
+        "Skiing", "Taekwondo", "Surfing", "Baseball", "Kayaking", "Canoeing",
+        "Rugby", "Skateboarding", "Snooker", "Gymnastics", "Sailing", "Badminton",
+        "Bowling", "Judo", "Shooting", "Wrestling", "Darts", "Basketball",
+        "Hockey", "Swimming", "Karate", "Row", "MMA", "Climbing", "Speedway",
+        "Equestrian", "Soccer", "Fishing", "Motorcycling", "Triathlon", "Tennis",
+        "Diving", "Archery", "Tabletennis", "Hiking", "BMX", "Hunting", "Cycling",
+        "Marathon", "Boxing", "Pingpong", "Pool", "Rally", "Cricket", "Track",
+        "Field", "Fencing", "Snowboarding", "Volleyball", "Golf"
+    ],
 
-       "sciences": [
-            "climatology", "herpetofauna", "paleobotany", "biomechatronics", "paleontology",
-            "psychology", "microbiology", "cosmology", "herpetology", "algology",
-            "ecotoxicology", "astronomy", "anthropology", "archaeology", "nanotechnology",
-            "chemistry", "geochemistry", "sociology", "acoustics", "malacology",
-            "bionanotechnology", "entomology", "electromagnetism", "virology",
-            "astrophysics", "optics", "paleoclimatology", "taphonomy", "immunology",
-            "botany", "ecology", "ichthyology", "mammalogy", "volcanology", "biochemistry",
-            "genetics", "relativity", "geophysics", "bacteriology", "parasitology",
-            "biomimetics", "mechanics", "biophysics", "neuroscience", "thermodynamics",
-            "superconductivity", "biology", "oceanography", "biotechnology", "bioinformatics",
-            "astrobiology", "ornithology", "toxicology", "hydrology", "zoology", "geology",
-            "meteorology", "protozoology", "biomaterials", "astrochemistry", "seismology",
-            "ecophysiology", "criminology", "nanoscience", "geobiology", "phycology",
-            "biomechanics", "biogeochemistry", "bioelectronics", "pharmacology", "mycology",
-            "exoplanets", "materials", "physics"
-        ],
-        "countries": [
-            "Kenya", "Turkey", "Germany", "Colombia", "Thailand", "Peru", "SouthKorea",
-            "USA", "Sweden", "Finland", "Nigeria", "Iraq", "Indonesia", "Uzbekistan",
-            "Laos", "Australia", "SriLanka", "France", "Georgia", "Syria", "Turkmenistan",
-            "Switzerland", "Russia", "Malaysia", "Austria", "Myanmar", "Pakistan",
-            "Bangladesh", "Singapore", "India", "Belgium", "Morocco", "China", "Japan",
-            "NewZealand", "Lebanon", "Nepal", "Philippines", "Iran", "Azerbaijan",
-            "Kazakhstan", "Venezuela", "Norway", "Yemen", "UnitedKingdom", "Armenia",
-            "Tajikistan", "Mongolia", "Egypt", "Italy", "Jordan", "Chile", "Mexico",
-            "Portugal", "SouthAfrica", "Brazil", "Denmark", "Bhutan", "Israel",
-            "Argentina", "Vietnam", "Spain", "Kyrgyzstan", "Afghanistan", "Oman",
-            "Canada", "Cambodia", "Netherlands", "Qatar", "Palestine", "Brunei"
-        ]
+    "foods": [
+        "Macaron", "Burger", "Pizza", "Bread", "Waffle",
+        "Cake", "Sorbet", "Cookie", "Noodle", "Gelato", "Juice", "Soup",
+        "Casserole", "Curry", "Quiche", "Salad", "Tiramisu", "Mousse", "Sushi",
+        "Grilled", "Omelette", "Pie", "Chocolate", "Dumpling", "Roast", 
+        "Pudding", "Stew", "Coffee", "Croissant", "Sashimi", "Cheese", "Pancake",
+        "Sandwich", "Donut", "Muffin", "Bagel", "Smoothie", "Brownie", "Samosa",
+        "Tacos", "Crepe", "Yogurt", "Baked", "Pasta", "Tea"
+    ],
+
+    "professions": [
+        "Writer", "Strategist", "Economist", "Producer", "Poet", "Psychologist",
+        "Scientist", "Biologist", "Composer", "Librarian", "Doctor", "Politician",
+        "Architect", "Artist", "Researcher", "Philosopher", "Chef", "Teacher",
+        "Businessman", "Actor", "Filmmaker", "Leader", "Inventor", "Entrepreneur",
+        "Dancer", "Journalist", "Nurse", "Mathematician", "Explorer", "Pilot",
+        "Athlete", "Engineer", "Musician", "Novelist", "Chemist", "Historian",
+        "Scholar", "Lawyer", "Director", "Author", "Painter", "Philanthropist","Activist"
+    ],
+
+       
+    "sciences": [
+        "Climatology", "Herpetofauna", "Paleobotany", "Biomechatronics", "Paleontology",
+        "Psychology", "Microbiology", "Cosmology", "Herpetology", "Algology",
+        "Ecotoxicology", "Astronomy", "Anthropology", "Archaeology", "Nanotechnology",
+        "Chemistry", "Geochemistry", "Sociology", "Acoustics", "Malacology",
+        "Bionanotechnology", "Entomology", "Electromagnetism", "Virology",
+        "Astrophysics", "Optics", "Paleoclimatology", "Taphonomy", "Immunology",
+        "Botany", "Ecology", "Ichthyology", "Mammalogy", "Volcanology", "Biochemistry",
+        "Genetics", "Relativity", "Geophysics", "Bacteriology", "Parasitology",
+        "Biomimetics", "Mechanics", "Biophysics", "Neuroscience", "Thermodynamics",
+        "Superconductivity", "Biology", "Oceanography", "Biotechnology", "Bioinformatics",
+        "Astrobiology", "Ornithology", "Toxicology", "Hydrology", "Zoology", "Geology",
+        "Meteorology", "Protozoology", "Biomaterials", "Astrochemistry", "Seismology",
+        "Ecophysiology", "Criminology", "Nanoscience", "Geobiology", "Phycology",
+        "Biomechanics", "Biogeochemistry", "Bioelectronics", "Pharmacology", "Mycology",
+        "Exoplanets", "Materials", "Physics", "Mathematics", "Statistics", "Computer",    
+    ],
+    "countries": [
+        "Kenya", "Turkey", "Germany", "Colombia", "Thailand", "Peru", 
+        "USA", "Sweden", "Finland", "Nigeria", "Iraq", "Indonesia", "Uzbekistan",
+        "Laos", "Australia", "SriLanka", "France", "Georgia", "Syria", "Turkmenistan",
+        "Switzerland", "Russia", "Malaysia", "Austria", "Myanmar", "Pakistan",
+        "Bangladesh", "Singapore", "India", "Belgium", "Morocco", "China", "Japan",
+        "NewZealand", "Lebanon", "Nepal", "Philippines", "Iran", "Azerbaijan",
+        "Kazakhstan", "Venezuela", "Norway", "Yemen","Armenia",
+        "Tajikistan", "Mongolia", "Egypt", "Italy", "Jordan", "Chile", "Mexico",
+        "Portugal", "Brazil", "Denmark", "Bhutan", "Israel",
+        "Argentina", "Vietnam", "Spain", "Kyrgyzstan", "Afghanistan", "Oman",
+        "Canada", "Cambodia", "Netherlands", "Qatar", "Palestine", "Brunei"
+    ]
+
 
     }
 
-    genre = random.choice(genres)
-    words = genre_words.get(genre, [])
+    playing_genre = random.choice(genres)
+    words = genre_words.get(playing_genre, [])
+
+     # Check if there are at least 2 words to sample from
+    if len(words) < 2:
+        raise ValueError(f"Not enough words for the genre '{playing_genre}'")
+
+    starting_genre = random.choice([genre for genre in genres if genre != playing_genre])
+    starting_word = random.choice(genre_words.get(starting_genre, []))
+
+    # Ensure there are enough words to sample
+    if len(words) < 2:
+        raise ValueError(f"Not enough words to sample from '{playing_genre}'")
     
     word1, word2 = random.sample(words, 2)
 
-    return genre, word1, word2
+    return playing_genre, starting_word, word1, word2
 
+    # playing_genre = random.choice(genres)
+
+    # remaining_genres = [genre for genre in genres if genre != playing_genre]
+    # starting_genre = random.choice(remaining_genres)
+
+    # words = generate_genres_and_words.get(playing_genre, [])
+    
+    # word1, word2 = random.sample(words, 2)
+
+    # return  playing_genre, starting_genre, word1, word2
 
 
 # test 
 
-genre, word1, word2 = generate_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
-print(f"Category: {genre}")
+playing_genre, starting_genre, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+print(f"Category: {playing_genre}")
+print(f"Starting word: {starting_genre}")
 print(f"Words: {word1}, {word2}")
 
 
