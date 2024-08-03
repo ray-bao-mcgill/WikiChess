@@ -45,14 +45,15 @@ def generate_unique_code(length):
     
     return code
 
-
-
 @app.route("/")
 def index():
     return render_template("index.html")
 
 @app.route("/local")
 def local():
+
+#words = generate_words()
+
     return render_template("local.html")
 
 @app.route("/online", methods=["POST", "GET"])
