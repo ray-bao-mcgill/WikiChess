@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="static/css/torrey.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <style>
     .bgSvg{
         position: absolute;
@@ -9,16 +12,35 @@
         left:0;
         z-index: -10;
     }
+    .tooltip{
+        width: 425px;
+        min-height: 200px;
+        padding: 15px;
+        font-size: 25px;
+        background: white;
+        box-shadow: 0 30px 90px -20px rgba(0,0,0);
+        position:absolute;
+        z-index: 100;
+        display: none;
+        opacity: 0;
+
+    }
+    .fade-in{
+        display: block;
+        animation: fade 0.2 linear forwards;
+    }
+    @keyframes fade{
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    
 </style>
-
 <svg class="bgSvg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="100,0 50,0 100,30" fill="#a6c9ed" stroke="transparent" stroke-width="2"></polygon>
-    <polygon points="0,100 0,70 50,100" fill="#a6c9ed" stroke="transparent" stroke-width="2"></polygon>
 
-    <polygon points="100,0 80,20 100,40" fill="#92bce4" stroke="transparent" stroke-width="2"></polygon>
-    <polygon points="50,0 70,20 60,0" fill="#b2d0f0" stroke="transparent" stroke-width="2"></polygon>
-    <polygon points="0,100 20,80 0,60" fill="#92bce4" stroke="transparent" stroke-width="2"></polygon>
-    <polygon points="50,100 30,80 40,100" fill="#b2d0f0" stroke="transparent" stroke-width="2"></polygon>
 </svg>
 
 <div class="homeContent">
@@ -26,20 +48,22 @@
         <span class="highlight first-letter">W</span>IKI<span class="highlight">C</span>HESS
     </h1>
 
-
-    <p class="subtitle">Wiki-racer but better</p>
+    <div class="tooltip">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore dolore consequuntur iste cum accusamus. Provident omnis, saepe nostrum tempora est dignissimos maiores unde enim consequatur exercitationem quas officia alias natus!
+    </div>
     <div class="buttons">
         <div class="button">
-            <span class="button-text" onclick="localPlay()">Local Play!!</span>
+            <span class="button-text" onclick="localPlay()">Local</span>
         </div>
         <div class="button">
-            <span class="button-text" onclick="onlinePlay()">Online Play!!</span>
+            <span class="button-text" onclick="onlinePlay()">Online</span>
         </div>
     </div>
 </div>
 
 
 <script>
+    const tooltips = Array.from(document.querySelectorAll('.tooltip'));
     function localPlay() {
         // Add your local play functionality here
        window.location.href = 'http://127.0.0.1:5000/local';

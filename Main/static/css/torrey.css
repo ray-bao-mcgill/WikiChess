@@ -1,12 +1,17 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(font/Panton-Trial-Black.ttf);
+}
+
 body {
-    font-family: 'Linux Libertine O', sans-serif;
+    font-family: "CustomFont";
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #d4e2f0;
+    background-color: #457b9d;
     animation: change-background 3s infinite linear;
     user-select: none;
 }
@@ -19,23 +24,25 @@ body {
 
 .title {
     font-size: 4.5em;
-    color: black;
+    color: #a8dadc;
     margin: 0;
-    font-family: 'Linux Libertine O', sans-serif;
+    font-family: "CustomFont";
+    font-weight: 1000;
+    font-style: normal;
     transition: color 0.3s, text-decoration 0.3s;
 }
 
 .title:hover {
-    color: blue;
+    color: #e63946;
     text-decoration: underline;
     cursor:default;
 }
 
 .highlight {
-    font-size: 1.5em;
+    font-size: 1.3em;
     vertical-align: middle;
     position: relative;
-    top: -0.16em;
+    top: -0.1em;
 }
 
 
@@ -43,7 +50,7 @@ body {
     font-size: 1.5em;
     color: #333;
     margin: 10px 0 30px;
-    font-family: 'Linux Libertine O', sans-serif;
+    font-family: "CustomFont";
 }
 
 .buttons {
@@ -56,22 +63,21 @@ body {
     position: relative;
     cursor: pointer;
     padding: 15px 25px;
-    background-color: #c1d3e0;
+    background-color: #a8dadc;
     border-radius: 20px; /* Make the buttons rounder */
     margin: 10px 0;
     width: 220px;
     text-align: center;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 3px 3px 5px #aaa, -3px -3px 5px #fff; /* 3D outline effect */
 }
 
 .button:hover {
-    background-color: #9eadb8;
+    background-color: #e63946;
     transform: scale(1.1); /* Increase size on hover */
 }
 
 .button-text {
     font-size: 1.5em;
-    color: #333;
-    font-family: 'Linux Libertine O', sans-serif;
+    color: #f1faee;
+    font-family: "CustomFont";
 }
