@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Scraper</title>
+    
+    <!-- Include Wikipedia CSS -->
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles&skin=vector">
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.visualEditor.desktopArticleTarget.noscript&only=styles&skin=vector">
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.cite.styles&only=styles&skin=vector">
+
+    <!-- Custom CSS to restyle the infobox -->
+    <style>
+        .infobox {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+        }
+
+        .infobox th, .infobox td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .infobox th {
+            background-color: #f1f1f1;
+            font-weight: bold;
+        }
+
+        .infobox .infobox-title {
+            font-size: 1.2em;
+            text-align: center;
+            background-color: #0073e6;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .infobox img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .infobox-caption {
+            font-size: 0.8em;
+            color: #555;
+            padding: 5px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wikipedia Page Scraper</h1>
+    
+    <form method="POST">
+        <label for="url">Enter Wikipedia URL or /wiki/Page_Title:</label><br>
+        <input type="text" id="url" name="url" required><br><br>
+        <input type="submit" value="Scrape">
+    </form>
+    {% if moves1 %}
+    <h2>pastmoves:</h2>
+        {% for move in moves1 %}
+        <p>{{ move }}</p>
+        {%endfor%}
+    {% endif %}
+    {% if html_content %}
+        <h2>Scraped Content:</h2>
+        <div id="content" class="mw-body" style="border: 1px solid #000; padding: 10px;">
+            {{ html_content | safe }}
+        </div>
+    {% endif %}
+
+
+</body>
+</html>

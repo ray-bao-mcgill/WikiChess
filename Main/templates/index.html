@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Hello World!
-</body>
-</html>
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="static/css/torrey.css">
+<div class="homeContent">
+    <h1 class="title">Wiki-Chess</h1>
+    <p>Wiki-racer but better</p>
+    <button class="fun" onclick="localPlay()">Local Play!!</button>
+    <button class="fun" onclick="onlinePlay()">Online Play!!</button>
+</div>
+
+<script>
+    function localPlay() {
+        // Add your local play functionality here
+       window.location.href = 'http://localhost:5000/local';
+    }
+
+    function onlinePlay() {
+        // Add your online play functionality here
+        window.location.href = 'http://localhost:5000/online';
+    }
+</script>
+
+{% endblock %}

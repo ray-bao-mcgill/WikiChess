@@ -1,0 +1,78 @@
+:root {
+    --gradient: linear-gradient(90deg, #52baee, purple, #52baee);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #ddd;
+    background-size: 300%;
+    background-image: var(--gradient);
+    animation: bg-animation 25s infinite;
+}
+
+@keyframes bg-animation {
+    0% { background-position: left }
+    50% { background-position: right }
+    100% { background-position: left }
+}
+
+.content {
+    background: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em;
+    box-shadow: 0 0 3em rgba(0, 0, 0, .15);
+}
+
+.title {
+    margin: 0 0 .5em;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 3rem;
+    color: #ee6352;
+    line-height: .8;
+    background-image: var(--gradient);
+    background-clip: text;
+    color: transparent;
+    background-size: 300%;
+    transition: background-position 1s;
+}
+
+.title:hover {
+    background-position: right;
+}
+
+p {
+    font-size: 1.5em;
+    color: #000000;
+    margin: 20px 0;
+}
+
+.fun {
+    color: white;
+    border: 0;
+    cursor: pointer;
+    padding: .5em 1.25em;
+    margin: 10px 0;
+    font-size: 1.2em;
+    background: linear-gradient(90deg, #ee6352, purple, #ee6352);
+    background-size: 300%;
+    background-position: left;
+    transition: background-position 350ms;
+}
+
+.fun:hover {
+    background-position: right;
+}
+
+h1{
+    font-size: 60px;
+}
