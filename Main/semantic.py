@@ -1,14 +1,19 @@
-import spacy 
+import spacy
 
-nlp =  spacy.load('en_core_web_lg') 
+nlp = spacy.load('en_core_web_lg')  # or 'en_core_web_md'
 
 def semantic_score(w1, w2):
-    w1 = nlp.vocab[w1]
-    w2 = nlp.vocab[w2]
+    # replace underscores with spaces if present
+    w1 = w1.replace('_', ' ')
+    w2 = w2.replace('_', ' ')
 
-    return (w1.similarity(w2)) * 100 
+    s1 = nlp(w1)
+    s2 = nlp(w2)
 
-
+    similarity = s1.similarity(s2)
+    
+    # return as % 
+    return similarity * 100
 
 
 # ----------------------TESTING -------------------
@@ -19,7 +24,9 @@ test_words = [
     ("happy", "joyful"),  # Synonyms, high similarity
     ("light", "light"),  # Same word, high similarity
     ("dog", "computer"),  # Very different, low similarity
-    ("flarn", "blorp")  # Gibberish, very low similarity
+    ("flarn", "blorp"),  # Gibberish, very low similarity
+    ("Catholic_Church", "Muslim_Church"), # underscore values 
+    ("Ground_fighting", "Catch_wrestling") # underscore values
 ]
 
 for word1, word2 in test_words:
