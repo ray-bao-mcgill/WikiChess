@@ -99,7 +99,16 @@ def localGame():
         if url.startswith('/wiki/'):
             url = "https://en.wikipedia.org" + url
         html_content = scrape_wikipedia_page(url)
-    return render_template('localGame.html', html_content=html_content)
+    return render_template('localGame.html', html_content=html_content, moves1=game.get_past_moves1())
+
+@app.route('/switchTurn', methods=['GET', 'POST'])
+def switchTurn():
+    if request.method == 'POST':
+        game.switchTurn()
+    return render_template('localGame.html', 
+                           html_content=scrape_wikipedia_page("https://en.wikipedia.org/wiki/Chess"), 
+                           moves1=game.get_past_moves1(), 
+                           moves2=game.get_past_moves2())
 
 @app.route('/<path:path>')
 def catch_all(path):
@@ -109,7 +118,11 @@ def catch_all(path):
         game.add_past_move1(word)
     else:
         game.add_past_move2(word)
-    return render_template('localGame.html', html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), moves1=game.get_past_moves1())
+    return render_template('localGame.html', 
+                           html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
+                           moves1=game.get_past_moves1(),
+                           moves2=game.get_past_moves2())
+
 
 
 @socketio.on("asdf")

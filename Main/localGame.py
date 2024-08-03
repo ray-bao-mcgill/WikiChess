@@ -60,3 +60,9 @@ class LocalGame:
     
     def getTurn(self):
         return self.turn
+    
+    def switchTurn(self):
+        if self.turn == "White":
+            self.turn = "Black"
+        else:
+            self.turn = "White"
