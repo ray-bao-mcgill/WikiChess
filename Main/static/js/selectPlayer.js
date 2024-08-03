@@ -31,7 +31,7 @@ function selectPlayer(playerNumber) {
             toggle1=true
             player1Section.style.flex = '2';
             player2Section.style.flex = '1';
-            document.getElementById('word1').innerHTML = 'GRILLED CHEESE';
+            document.getElementById('word1').innerHTML = document.getElementById('secret1').innerHTML;
             document.getElementById('word1').style.opacity = 1;
         } else{
             player1Section.style.flex = '1';
@@ -48,7 +48,7 @@ function selectPlayer(playerNumber) {
             toggle2=true
             player2Section.style.flex = '2';
             player1Section.style.flex = '1';
-            document.getElementById('word2').innerHTML = 'GRILLED CHEESE';
+            document.getElementById('word2').innerHTML = document.getElementById('secret2').innerHTML;;
             document.getElementById('word2').style.opacity = 1;
         } else{
             player2Section.style.flex = '1';

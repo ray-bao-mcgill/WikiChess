@@ -5,6 +5,7 @@ from string import ascii_uppercase
 import requests
 from bs4 import BeautifulSoup
 import localGame as lg
+import generator as gen
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretKey"
 socketio = SocketIO(app)
@@ -51,10 +52,10 @@ def index():
 
 @app.route("/local")
 def local():
-
-#words = generate_words()
-
-    return render_template("local.html")
+    genre, word1, word2 = gen.generate_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+    game.set_target1(word1)
+    game.set_target2(word2)
+    return render_template("local.html", word1=word1, word2=word2, genre=genre)
 
 @app.route("/online", methods=["POST", "GET"])
 def online():

@@ -2,6 +2,8 @@ class LocalGame:
     def __init__(self):
         self.player1 = "White"
         self.player2 = "Black"
+        self.target1 = ""
+        self.target2 = ""
         self.past_moves1 = []
         self.past_scores1 = []
         self.past_moves2 = []
@@ -9,6 +11,30 @@ class LocalGame:
         self.timer1 = 0
         self.timer2 = 0
         self.turn = "White"
+
+    def get_target1(self):
+        return self.target1
+
+    def set_target1(self, target1):
+        self.target1 = target1
+
+    def get_target2(self):
+        return self.target2
+
+    def set_target2(self, target2):
+        self.target2 = target2
+
+    def get_timer1(self):
+        return self.timer1
+
+    def set_timer1(self, timer1):
+        self.timer1 = timer1
+
+    def get_timer2(self):
+        return self.timer2
+
+    def set_timer2(self, timer2):
+        self.timer2 = timer2
 
     def get_player1(self):
         return self.player1
