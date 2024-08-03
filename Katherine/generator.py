@@ -48,7 +48,7 @@ def generate_genres_and_words(genres):
         "Businessman", "Actor", "Filmmaker", "Leader", "Inventor", "Entrepreneur",
         "Dancer", "Journalist", "Nurse", "Mathematician", "Explorer", "Pilot",
         "Athlete", "Engineer", "Musician", "Novelist", "Chemist", "Historian",
-        "Scholar", "Lawyer", "Author", "Painter", "Philanthropist","Activist"
+        "Scholar", "Lawyer", "Director", "Author", "Painter", "Philanthropist","Activist"
     ],
 
        

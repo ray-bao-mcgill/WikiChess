@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(font/Panton-Trial-Black.ttf);
+}
+
+body {
+    font-family: "CustomFont";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #457b9d;
+    animation: change-background 3s infinite linear;
+    user-select: none;
+}
+
+.homeContent {
+    text-align: center;
+    z-index: 3;
+    position: relative;
+}
+
+.title {
+    font-size: 4.5em;
+    color: #a8dadc;
+    margin: 0;
+    font-family: "CustomFont";
+    font-weight: 1000;
+    font-style: normal;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.title:hover {
+    color: #e63946;
+    text-decoration: underline;
+    cursor:default;
+}
+
+.highlight {
+    font-size: 1.3em;
+    vertical-align: middle;
+    position: relative;
+    top: -0.1em;
+}
+
+
+.subtitle {
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0 30px;
+    font-family: "CustomFont";
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    position: relative;
+    cursor: pointer;
+    padding: 15px 25px;
+    background-color: #a8dadc;
+    border-radius: 20px; /* Make the buttons rounder */
+    margin: 10px 0;
+    width: 220px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #e63946;
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+.button-text {
+    font-size: 1.5em;
+    color: #f1faee;
+    font-family: "CustomFont";
+}
