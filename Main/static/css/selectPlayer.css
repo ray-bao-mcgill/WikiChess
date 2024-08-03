@@ -1,7 +1,12 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(font/Panton-Trial-Black.ttf);
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #e0e7f1;
+    font-family: "CustomFont";
+    background-color: #5C91B4;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,10 +15,10 @@ body {
 
 .game-container {
     display: flex;
-    width: 100%;
+    width: 100%;   
     height: 100%;
     border: 1px solid #333;
-    background-color: #d4e2f0;
+    background-color: #5C91B4;
 }
 
 .player-section {
@@ -28,7 +33,7 @@ body {
 }
 
 .player-section:hover {
-    background-color: #c1d3e0;
+    background-color: #457b9d;
 }
 
 
@@ -73,6 +78,6 @@ body {
     opacity: 1;
 }
 #start-game:hover {
-    background-color: #0056b3;
+    background-color: #457b9d;
 }
 }
