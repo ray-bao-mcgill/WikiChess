@@ -29,14 +29,15 @@ def generate_genres_and_words(genres):
             "marathon", "boxing", "pingpong", "pool", "rally", "cricket", "track",
             "field", "fencing", "snowboarding", "volleyball", "golf"
         ],
+        
         "foods": [
-            "icecream", "macaron", "burger", "pizza", "fried", "bread", "waffle",
-            "cake", "sorbet", "cookie", "noodle", "gelato", "juice", "soup",
-            "casserole", "curry", "quiche", "salad", "tiramisu", "mousse", "sushi",
-            "grilled", "omelette", "pie", "chocolate", "dumpling", "roast", "tapioca",
-            "pudding", "stew", "coffee", "croissant", "sashimi", "cheese", "pancake",
-            "sandwich", "donut", "muffin", "bagel", "smoothie", "brownie", "samosa",
-            "tacos", "crepe", "yogurt", "baked", "pasta", "tea"
+            "Macaron", "Burger", "Pizza", "Fried", "Bread", "Waffle",
+            "Cake", "Sorbet", "Cookie", "Noodle", "Gelato", "Juice", "Soup",
+            "Casserole", "Curry", "Quiche", "Salad", "Tiramisu", "Mousse", "Sushi",
+            "Grilled", "Omelette", "Pie", "Chocolate", "Dumpling", "Roast", 
+            "Pudding", "Stew", "Coffee", "Croissant", "Sashimi", "Cheese", "Pancake",
+            "Sandwich", "Donut", "Muffin", "Bagel", "Smoothie", "Brownie", "Samosa",
+            "Tacos", "Crepe", "Yogurt", "Baked", "Pasta", "Tea"
         ],
 
         "professions": [
@@ -68,15 +69,15 @@ def generate_genres_and_words(genres):
             "exoplanets", "materials", "physics"
         ],
         "countries": [
-            "Kenya", "Turkey", "Germany", "Colombia", "Thailand", "Peru", "SouthKorea",
+            "Kenya", "Turkey", "Germany", "Colombia", "Thailand", "Peru", 
             "USA", "Sweden", "Finland", "Nigeria", "Iraq", "Indonesia", "Uzbekistan",
             "Laos", "Australia", "SriLanka", "France", "Georgia", "Syria", "Turkmenistan",
             "Switzerland", "Russia", "Malaysia", "Austria", "Myanmar", "Pakistan",
             "Bangladesh", "Singapore", "India", "Belgium", "Morocco", "China", "Japan",
             "NewZealand", "Lebanon", "Nepal", "Philippines", "Iran", "Azerbaijan",
-            "Kazakhstan", "Venezuela", "Norway", "Yemen", "UnitedKingdom", "Armenia",
+            "Kazakhstan", "Venezuela", "Norway", "Yemen","Armenia",
             "Tajikistan", "Mongolia", "Egypt", "Italy", "Jordan", "Chile", "Mexico",
-            "Portugal", "SouthAfrica", "Brazil", "Denmark", "Bhutan", "Israel",
+            "Portugal", "Brazil", "Denmark", "Bhutan", "Israel",
             "Argentina", "Vietnam", "Spain", "Kyrgyzstan", "Afghanistan", "Oman",
             "Canada", "Cambodia", "Netherlands", "Qatar", "Palestine", "Brunei"
         ]
