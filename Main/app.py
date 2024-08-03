@@ -91,7 +91,7 @@ def room():
 
     return render_template("room.html", code=room, messages=rooms[room]["messages"])
 
-@app.route("/localGame")
+@app.route("/localGame", methods=['GET', 'POST'])
 def localGame():
     html_content = None
     if request.method == 'POST':
