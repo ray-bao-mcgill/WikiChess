@@ -1,97 +1,45 @@
-:root {
-    --gradient: linear-gradient(90deg, black, #ddd, black);
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh;
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.125em;
-    line-height: 1.6;
-    color: #333;
-    background: #ddd;
-    background-size: 300%;
-    background-image: var(--gradient);
-    animation: bg-animation 25s infinite;
+    height: 100vh;
     margin: 0;
-  }
-  
-  @keyframes bg-animation {
-    0% {background-position: left}
-    50% {background-position: right}
-    100% {background-position: left}
-  }
-  
-  .content {
-    background: white;
-    width: 70vw;
-    padding: 3em;
-    box-shadow: 0 0 3em rgba(0,0,0);
+    background-color: #d4e2f0;
+    font-family: 'Linux Libertine O', sans-serif;
+}
+
+.container {
     text-align: center;
-  }
-  
-  .title {
-    margin: 0 0 .5em;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-style: italic;
-    font-size: 3rem;
-    color: #ddd;
-    line-height: .8;
-    background-image: var(--gradient);
-    background-clip: text;
-    color: transparent;
-    background-size: 300%;
-    transition: background-position 1s;
-  }
-  
-  .title:hover {
-    background-position: right;
-  }
-  
-  .buttons {
+}
+
+.title {
+    font-size: 6em;
+    margin-bottom: 20px;
+}
+
+.title:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.buttons {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 400px;
-    margin: 0 auto;
-  }
-  
-  .button {
-    position: relative;
-    cursor: pointer;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap to move buttons closer */
+}
+
+.button {
+    background-color: #c1d3e0;
+    border: none;
     padding: 10px 20px;
-    background: var(--gradient);
-    background-size: 300%;
-    background-position: left;
-    color: white;
-    border-radius: 5px;
-    transition: background-position 350ms;
-  }
-  
-  .button:hover {
-    background-position: right;
-  }
-  
-  .button .arrow {
-    display: none;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .button:hover .arrow {
-    display: block;
-    border-bottom: 10px solid white;
-  }
-  
-  .button-text {
     font-size: 1.5em;
-  }
-  
+    cursor: pointer;
+    width: 150px; /* Fixed width for both buttons */
+    height: 50px; /* Fixed height for both buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #9eadb8;
+}

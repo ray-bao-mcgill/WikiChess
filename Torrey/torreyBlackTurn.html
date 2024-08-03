@@ -3,32 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Moves</title>
-    <link rel="stylesheet" href="torreyBlackTurn.css">
+    <title>Chess Moves</title>
+    <link href="https://fonts.cdnfonts.com/css/linux-libertine-o" rel="stylesheet">
+    <link rel="stylesheet" href="torreyWhiteTurn.css">
 </head>
 <body>
-    <div class="content">
+    <div class="container">
         <h1 class="title">Black Moves</h1>
         <div class="buttons">
-            <div class="button guess">
-                <span class="button-text">Guess!!</span>
-                <div class="arrow"></div>
-            </div>
-            <div class="button play">
-                <span class="button-text">Play!!</span>
-                <div class="arrow"></div>
-            </div>
+            <button class="button">Guess!!</button>
+            <button class="button">Play!!</button>
         </div>
     </div>
-
-    <script>
-        document.querySelector('.guess').addEventListener('click', function() {
-            alert('Guess!!');
-        });
-
-        document.querySelector('.play').addEventListener('click', function() {
-            alert('Play!!');
-        });
-    </script>
 </body>
 </html>
