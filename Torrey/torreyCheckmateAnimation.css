@@ -47,7 +47,7 @@ body {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-40px); /* Adjust for larger piece */
+        transform: translateY(-50px); /* Adjust for larger piece */
     }
 }
 
@@ -112,4 +112,27 @@ body {
     background-color: black;
     border-radius: 5px;
     margin-top: -10px;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50px);
+    }
+}
+
+.check-mate {
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+    font-size: 1.7em;
+    color: black;
+    opacity: 0;
+    animation: slideIn 1s ease-in-out forwards;
+    animation-delay: 2s; /* Delay to start after the king splits */
 }

@@ -6,14 +6,14 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('minimi.jpg'); /* Path to your image */
-    background-repeat: repeat;
-    background-size: contain;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
 }
 
 .container {
     text-align: center;
-    z-index: 3;
+    z-index: 1;
     position: relative;
 }
 
@@ -77,4 +77,99 @@ body {
     font-size: 1.5em;
     color: #333;
     font-family: 'Linux Libertine O', sans-serif;
+}
+
+/* Chess piece shapes */
+.shape {
+    position: absolute;
+    background-color: black;
+    opacity: 0.8;
+}
+
+/* King piece */
+.king {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    background: none;
+    width: 70px;
+    height: 220px;
+}
+
+.king .cross {
+    position: relative;
+    width: 20px; /* Adjust size for larger piece */
+    height: 60px; /* Adjust size for larger piece */
+}
+
+.king .vertical {
+    width: 20px; /* Adjust size for larger piece */
+    height: 40px; /* Adjust size for larger piece */
+    background-color: black;
+}
+
+.king .horizontal {
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    width: 50px; /* Adjust size for larger piece */
+    height: 15px; /* Adjust size for larger piece */
+    background-color: black;
+}
+
+.king .crown {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent; /* Adjust size for larger piece */
+    border-right: 30px solid transparent; /* Adjust size for larger piece */
+    border-top: 40px solid black; /* Adjust size for larger piece */
+    margin-top: -10px;
+}
+
+.king .neck {
+    width: 30px; /* Adjust size for larger piece */
+    height: 30px; /* Adjust size for larger piece */
+    background-color: black;
+    margin-top: -10px;
+}
+
+.king .body {
+    width: 70px; /* Adjust size for larger piece */
+    height: 120px; /* Adjust size for larger piece */
+    background-color: black;
+    border-radius: 10px;
+    margin-top: -10px;
+}
+
+.king .base {
+    width: 90px; /* Adjust size for larger piece */
+    height: 50px; /* Adjust size for larger piece */
+    background-color: black;
+    border-radius: 5px;
+    margin-top: -10px;
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.shape {
+    animation: move 5s infinite;
+}
+
+.shape:nth-child(odd) {
+    animation-duration: 3s;
+}
+
+.shape:nth-child(even) {
+    animation-duration: 4s;
 }
