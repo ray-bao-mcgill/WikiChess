@@ -6,8 +6,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #d4e2f0;
-    animation: change-background 3s infinite linear;
+    background-image: url('minimi.jpg'); /* Path to your image */
+    background-repeat: repeat;
+    background-size: contain;
 }
 
 .container {
@@ -57,17 +58,19 @@ body {
 .button {
     position: relative;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 15px 25px;
     background-color: #c1d3e0;
-    border-radius: 5px;
+    border-radius: 20px; /* Make the buttons rounder */
     margin: 10px 0;
-    width: 200px;
+    width: 220px;
     text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 3px 3px 5px #aaa, -3px -3px 5px #fff; /* 3D outline effect */
 }
 
 .button:hover {
     background-color: #9eadb8;
+    transform: scale(1.1); /* Increase size on hover */
 }
 
 .button-text {
@@ -75,4 +78,3 @@ body {
     color: #333;
     font-family: 'Linux Libertine O', sans-serif;
 }
-
