@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Moves</title>
+    <link rel="stylesheet" href="torreyLocalGameBlack.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1 class="title">Black Move!</h1>
+        </header>
+        <div class="content-container">
+            <div class="left-panel">
+                <button class="wiki-button">WikiChess!</button>
+                <div class="chess-piece">
+                    <img src="black_king.png" alt="Black King">
+                </div>
+                <div class="similarity-score">
+                    <p>47.2</p>
+                    <p>SEMANTIC SIMILARITY</p>
+                </div>
+            </div>
+            <div class="main-content" id="main-content">
+                <div class="scrollable-content">
+                    <p>Scraped page</p>
+                    <p>More content...</p>
+                    <p>Even more content...</p>
+                    <!-- Add more content here to enable scrolling -->
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="timer">
+                    <p>00:15</p>
+                </div>
+                <div class="chess-piece">
+                    <img src="whiter_king.png" alt="White King">
+                </div>
+                <div class="similarity-score">
+                    <p>47.2</p>
+                    <p>SEMANTIC SIMILARITY</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.getElementById('main-content');
+            const header = document.querySelector('.header');
+
+            mainContent.addEventListener('scroll', function() {
+                if (mainContent.scrollTop > 0) {
+                    header.style.top = `-${mainContent.scrollTop}px`;
+                } else {
+                    header.style.top = '0px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

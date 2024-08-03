@@ -27,9 +27,10 @@ body {
     transition: top 0.3s;
 }
 
-.header h1 {
+.header .title {
     margin: 0;
     font-size: 2.5em;
+    color: #1d3557; /* Changed color to #1d3557 */
 }
 
 .content-container {

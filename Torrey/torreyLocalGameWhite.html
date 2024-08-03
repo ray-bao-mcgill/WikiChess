@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Moves</title>
-    <link rel="stylesheet" href="torreyLocalGame.css">
+    <link rel="stylesheet" href="torreyLocalGameWhite.css">
 </head>
 <body>
     <div class="main-container">
         <header class="header">
-            <h1>Black Move!</h1>
+            <h1>White Move!</h1>
         </header>
         <div class="content-container">
             <div class="left-panel">
                 <button class="wiki-button">WikiChess!</button>
                 <div class="chess-piece">
-                    <img src="rook.png" alt="Rook">
+                    <img src="black_king.png" alt="Black King">
                 </div>
                 <div class="similarity-score">
                     <p>47.2</p>
@@ -35,7 +35,7 @@
                     <p>00:15</p>
                 </div>
                 <div class="chess-piece">
-                    <img src="rook.png" alt="Rook">
+                    <img src="whiter_king.png" alt="White King">
                 </div>
                 <div class="similarity-score">
                     <p>47.2</p>
@@ -44,6 +44,19 @@
             </div>
         </div>
     </div>
-    <script src="torreyBlackTurn.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.getElementById('main-content');
+            const header = document.querySelector('.header');
+
+            mainContent.addEventListener('scroll', function() {
+                if (mainContent.scrollTop > 0) {
+                    header.style.top = `-${mainContent.scrollTop}px`;
+                } else {
+                    header.style.top = '0px';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
