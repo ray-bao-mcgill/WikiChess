@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'PANTON';
+    src: url("Panton-Trial-Black.ttf") format('truetype');
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #457b9d;
+}
+
+.container {
+    position: relative;
+}
+
+.box {
+    position: relative;
+    width: 100px; /* Adjust width for larger piece */
+    height: 250px; /* Adjust height for larger piece */
+}
+
+.chess-piece {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+
+.piece1, .piece2 {
+    top: 0;
+}
+
+.piece1 {
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+    animation-name: moveUp;
+}
+
+.piece2 {
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    animation-name: moveDown;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px); /* Adjust for larger piece */
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(40px); /* Adjust for larger piece */
+    }
+}
+
+.cross {
+    position: relative;
+    width: 20px; /* Adjust size for larger piece */
+    height: 60px; /* Adjust size for larger piece */
+    margin-bottom: -10px;
+}
+
+.vertical {
+    width: 20px; /* Adjust size for larger piece */
+    height: 40px; /* Adjust size for larger piece */
+    background-color: white;
+}
+
+.horizontal {
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    width: 50px; /* Adjust size for larger piece */
+    height: 15px; /* Adjust size for larger piece */
+    background-color: white;
+}
+
+.crown {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent; /* Adjust size for larger piece */
+    border-right: 30px solid transparent; /* Adjust size for larger piece */
+    border-top: 40px solid white; /* Adjust size for larger piece */
+    margin-top: -10px;
+}
+
+.neck {
+    width: 30px; /* Adjust size for larger piece */
+    height: 30px; /* Adjust size for larger piece */
+    background-color: white;
+    margin-top: -10px;
+}
+
+.body {
+    width: 70px; /* Adjust size for larger piece */
+    height: 120px; /* Adjust size for larger piece */
+    background-color: white;
+    border-radius: 10px;
+    margin-top: -10px;
+}
+
+.base {
+    width: 90px; /* Adjust size for larger piece */
+    height: 50px; /* Adjust size for larger piece */
+    background-color: white;
+    border-radius: 5px;
+    margin-top: -10px;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50px);
+    }
+}
+
+.check-mate {
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+    font-family: 'PANTON';
+    font-size: 1.7em;
+    color: white;
+    opacity: 0;
+    animation: slideIn 1s ease-in-out forwards;
+    animation-delay: 2s; /* Delay to start after the king splits */
+}

@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #456b9d;
+    overflow: hidden;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    background-color: #a8dadc;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #457b9d;
+    padding: 20px;
+    text-align: center;
+    color: #f1faee;
+    flex-shrink: 0;
+    transition: top 0.3s;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.left-panel, .right-panel {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content {
+    width: 60%;
+    background-color: #f1faee;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #1d3557;
+    flex-grow: 1;
+    position: relative;
+}
+
+.scrollable-content {
+    height: 150%;
+}
+
+.wiki-button {
+    background-color: #a8dadc;
+    border: 2px solid #1d3557;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #1d3557;
+    cursor: pointer;
+}
+
+.wiki-button:hover {
+    background-color: #f1faee;
+}
+
+.chess-piece img {
+    width: 80px;
+    height: auto;
+}
+
+.similarity-score {
+    text-align: center;
+    background-color: #1d3557;
+    color: #f1faee;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.similarity-score p {
+    margin: 5px 0;
+}
+
+.timer {
+    background-color: #e63946;
+    color: #f1faee;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
