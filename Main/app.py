@@ -101,7 +101,9 @@ def localGame():
         if url.startswith('/wiki/'):
             url = "https://en.wikipedia.org" + url
         html_content = scrape_wikipedia_page(url)
-    return render_template('localGame.html', html_content=html_content, moves1=game.get_past_moves1())
+    return render_template('localGame.html', html_content=html_content,
+                            moves1=game.get_past_moves1(),
+                            moves2=game.get_past_moves2())
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
 def switchTurn():
@@ -116,6 +118,13 @@ def switchTurn():
 def catch_all(path):
     print(path)
     word = path.split('/')[1]
+    check = ('').join(word.split('_'))
+    if check.lower() == game.get_target1().lower():
+        game.add_past_move1("REACHED")
+        # return render_template('winscreen' player=player1)
+    elif check.lower() == game.get_target2().lower():
+        game.add_past_move2("REACHED")
+        
     if game.getTurn() == "White":
         game.add_past_move1(word)
     else:
