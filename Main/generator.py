@@ -7,170 +7,123 @@ def get_wikipedia_page(word):
     return page if page.exists() else None
 
 def generate_words(genres):
-    # A sample dictionary with some single-word terms related to specific genres
     genre_words = {
-    "technology": [
-        "robotics", "cybernetics", "blockchain", "nanotechnology", "AI", "automation",
-        "biotechnology", "cloud", "cryptography", "data", "deepfake", "digital", "drones",
-        "encryption", "fiberoptics", "hardware", "hyperloop", "infotech", "internet",
-        "IoT", "machinelearning", "microprocessor", "neuralnetwork", "optics", "quantum",
-        "sensors", "software", "telecommunications", "virtualreality", "augmentedreality",
-        "bionics", "quantumcomputing", "genomics", "biometrics", "wearable", "nanorobotics",
-        "smartphones", "webdevelopment", "artificialintelligence", "cybersecurity", 
-        "blockchain", "cryptocurrency", "bigdata", "datamining", "cloudcomputing", 
-        "distributedcomputing", "informationsecurity", "5G", "internetofthings", "VR", "AR",
-        "biocomputing", "bioinformatics", "haptics", "nanomaterials", "photovoltaics", 
-        "semiconductors", "speechrecognition", "computervision", "naturalprocessing", 
-        "computational", "embedded", "microelectronics", "nanofabrication", "optomechanics",
-        "selfdriving", "telemedicine", "telepresence", "3Dprinting", "cyborg", "smartgrid",
-        "bioengineering", "cloudstorage", "edgecomputing", "neuromorphic", "quantumcryptography",
-        "spacetechnology", "syntheticbiology", "wearabletechnology", "wirelesscharging", 
-        "drone", "exoskeleton", "smartwatch", "braincomputer", "internetsecurity", 
-        "nanotechnology", "roboticsprocess", "biohacking", "selflearning", "digitalcurrency",
-        "computing", "augmentedreality", "hydrogenfuel", "virtualassistant", "quantumphysics",
-        "5Gnetwork", "cloudinfrastructure", "cyberforensics", "fintech", "greentech"
-    ],
-    "art": [
-        "cubism", "surrealism", "impressionism", "fauvism", "baroque", "abstract", 
-        "expressionism", "minimalism", "popart", "futurism", "neoclassicism", "romanticism", 
-        "rococo", "realism", "symbolism", "artdeco", "artnouveau", "dadaism", "mannerism", 
-        "constructivism", "pointillism", "conceptual", "photorealism", "installation", 
-        "streetart", "graffiti", "collage", "sculpture", "tapestry", "printmaking", 
-        "mosaic", "fresco", "lithography", "etching", "caricature", "illustration", 
-        "calligraphy", "stencil", "graffito", "woodcut", "watercolor", "acrylic", 
-        "oilpainting", "pastel", "encaustic", "tempera", "mural", "portraiture", 
-        "landscape", "stilllife", "anatomy", "composition", "perspective", "chiaroscuro", 
-        "sfumato", "impasto", "underpainting", "varnish", "hatching", "stippling", 
-        "tonalism", "fauvism", "orphism", "suprematism", "purism", "deconstructivism", 
-        "postmodernism", "outsiderart", "kitsch", "grotesque", "naiveart", "lowbrow", 
-        "artbrut", "opart", "stuckism", "hyperrealism", "verism", "narrativeart", 
-        "urbanart", "glitchart", "netart", "cyberart", "mediaart", "bioart", 
-        "soundart", "lightart", "environmentalart", "landart", "performanceart", 
-        "intermedia", "newmedia", "kineticart", "concreteart", "patternpainting", 
-        "actionpainting", "videoart", "relationalart", "participatoryart", "newaesthetic"
-    ],
-    "science": [
-        "biology", "chemistry", "physics", "geology", "astronomy", "ecology", 
-        "genetics", "biochemistry", "zoology", "botany", "meteorology", "oceanography", 
-        "geophysics", "paleontology", "anthropology", "sociology", "psychology", 
-        "neuroscience", "microbiology", "immunology", "toxicology", "pharmacology", 
-        "biophysics", "biotechnology", "astrobiology", "astrophysics", "quantummechanics", 
-        "relativity", "thermodynamics", "optics", "acoustics", "mechanics", "fluiddynamics", 
-        "electromagnetism", "quantumfieldtheory", "particlephysics", "nuclearphysics", 
-        "condensedmatter", "solidstatephysics", "materials", "nanoscience", "nanotechnology", 
-        "computationalphysics", "chaostheory", "complexsystems", "systemsbiology", 
-        "syntheticbiology", "bioinformatics", "structuralbiology", "developmentalbiology", 
-        "evolutionarybiology", "molecularbiology", "cellbiology", "ecotoxicology", 
-        "environmentalscience", "earthscience", "spaceexploration", "planetaryscience", 
-        "cosmology", "exoplanets", "quantumcomputing", "stringtheory", "superconductivity", 
-        "biogeochemistry", "geochemistry", "astrochemistry", "geobiology", "planetarygeology", 
-        "volcanology", "seismology", "hydrology", "climatology", "paleoclimatology", 
-        "paleobotany", "archaeology", "forensicscience", "criminology", "environmentalbiology", 
-        "ecophysiology", "behavioralbiology", "conservationbiology", "marinebiology", 
-        "entomology", "ornithology", "herpetology", "ichthyology", "mammalogy", 
-        "parasitology", "virology", "bacteriology", "mycology", "phycology", "protozoology", 
-        "algology", "malacology", "herpetofauna", "taphonomy", "biomechanics", 
-        "biomedicalengineering", "biomaterials", "bioelectronics", "biomimetics", 
-        "bionanotechnology", "biomechatronics"
-    ],
-    "literature": [
-        "novel", "poetry", "drama", "essay", "fiction", "nonfiction", "biography", 
-        "autobiography", "shortstory", "fable", "myth", "legend", "folklore", 
-        "fairytale", "epic", "narrative", "prose", "verse", "lyric", "ode", 
-        "sonnet", "haiku", "ballad", "elegy", "satire", "parody", "tragedy", 
-        "comedy", "romance", "mystery", "thriller", "horror", "fantasy", 
-        "sciencefiction", "historicalfiction", "magicalrealism", "dystopian", 
-        "utopian", "bildungsroman", "picaresque", "epistolary", "allegory", 
-        "gothic", "realism", "naturalism", "modernism", "postmodernism", 
-        "surrealism", "absurdism", "existentialism", "transcendentalism", 
-        "romanticism", "neoclassicism", "classicism", "symbolism", "expressionism", 
-        "metafiction", "cyberpunk", "steampunk", "slipstream", "speculativefiction", 
-        "adventure", "detectivefiction", "noir", "hardboiled", "pulpfiction", 
-        "urbanfantasy", "highfantasy", "lowfantasy", "grimdark", "newweird", 
-        "literaryfiction", "streamofconsciousness", "psychologicalfiction", 
-        "metaphysicalfiction", "philosophicalfiction", "magicrealism", 
-        "postapocalyptic", "apocalyptic", "alternatehistory", "bizarro", 
-        "graphicnovel", "comicbook", "manga", "lightnovel", "webfiction", 
-        "fanfiction", "slashfiction", "fandom", "litcrit", "literarytheory", 
-        "newcriticism", "deconstruction", "poststructuralism", "feministliterature", 
-        "queerliterature", "postcolonialliterature", "minorityliterature" "indigenousliterature", "worldliterature", "comparativeliterature", 
-        "oralliterature", "oraltradition", "folkliterature", "childrensliterature", 
-        "youngadultliterature", "bildungsroman", "nanofiction", "flashfiction"
-    ],
-    "music": [
-        "jazz", "blues", "rock", "classical", "pop", "hiphop", "reggae", 
-        "country", "folk", "electronic", "dance", "house", "techno", "trance", 
-        "dubstep", "drumandbass", "soul", "funk", "rnb", "disco", "metal", 
-        "punk", "grunge", "alternative", "indie", "ska", "bluegrass", 
-        "gospel", "opera", "baroque", "renaissance", "romantic", "chambermusic", 
-        "symphony", "concerto", "sonata", "cantata", "oratorio", "ballet", 
-        "minuet", "waltz", "swing", "bebop", "cooljazz", "hardbop", "fusion", 
-        "avantgarde", "newage", "ambient", "industrial", "noise", "psychedelic", 
-        "shoegaze", "dreampop", "lofi", "triphop", "downtempo", "trap", 
-        "crunk", "bounce", "emo", "posthardcore", "screamo", "postpunk", 
-        "newwave", "synthpop", "electropop", "futurepop", "retro", "vaporwave", 
-        "chillwave", "electroclash", "chiptune", "8bit", "breakbeat", 
-        "jungle", "ragga", "hardstyle", "gabber", "speedcore", "deathmetal", 
-        "blackmetal", "doommetal", "sludgemetal", "thrashmetal", "heavymetal", 
-        "powerballad", "folkmetal", "paganmetal", "vikingmetal", "symphonicmetal", 
-        "gothicmetal", "glamrock", "progrock", "psychrock", "krautrock", 
-        "postrock", "mathrock", "shoegaze", "altcountry", "altrock", 
-        "artrock", "britpop", "grime", "UKgarage", "drill", "mumblecore", 
-        "cloudrap", "gangstarap", "consciousrap", "neofolk", "neoclassical", 
-        "minimalism", "maximalism", "fluxus", "freakfolk", "hypnagogicpop", 
-        "nugaze", "futurerave", "techhouse", "electrohouse", "deeptech", 
-        "microhouse", "techstep", "neurofunk", "liquidfunk", "hardbass", 
-        "hardbounce", "aggrotech", "cyberpunk", "darkwave", "darkambient", 
-        "drone", "neoclassicaldarkwave", "neofolk", "ritualambient", "martialindustrial", 
-        "martialambient", "powernoise", "deathindustrial", "powernoise", "postindustrial", 
-        "breakcore", "speedcore", "terrorcore", "extratone", "noisecore", "doomcore", 
-        "doomjazz", "murderfolk", "witchhouse", "neowitch", "vogue", "kpop", 
-        "jpop", "cpop", "mandopop", "trot", "enka", "citypop", "idol", 
-        "idolpop", "idolkpop", "discoidolkpop", "tropikpop", "neokpop", "syndiepop", 
-        "hybrid", "bassline", "kawaiimetal", "idolmetal", "idolrock", "extremeidol", 
-        "deathgrind", "deathcore", "metalcore", "grindcore", "sludgecore", "postcore", 
-        "mathcore", "noisecore", "bluesrock", "garagepunk", "glitchhop", "moombahcore", 
-        "hyphy", "trapmetal", "trapwave", "phonk", "trapsoul", "latintrap", "latinhop", 
-        "latinjazz", "latinrock", "latinpop", "salsafusion", "reggaeton", "dembow", 
-        "latinhouse", "latinbounce", "latincore", "latindisco", "cumbia", "vallenato", 
-        "bossa", "samba", "tango", "bolero", "cha", "mambo", "rhumba", "flamenco", 
-        "mestizo", "ranchera", "mariachi", "norteno", "tehano", "grupera", 
-        "banda", "duranguense", "corridos", "nueva", "regional", "salsa", 
-        "merengue", "bachata", "punta", "timba", "son", "rumba", "charanga", 
-        "chachacha", "conga", "bomba", "plena", "candombe", "murga", "pagode", 
-        "forro", "brega", "arrocha", "lambada", "carimbo", "frevo", "maracatu", 
-        "axemusic", "calypso", "socamusic", "dancehall", "mento", "reggaeska", 
-        "rocksteady", "loversrock", "dubmusic", "rootsreggae", "ska", 
-        "thirdwave", "2tone", "moonstomp", "skajazz", "skaore", "ska", "mod"
-    ]
-}
-    # Randomly select a genre
+    
+       "animals": [
+            "walrus", "spider", "squid", "frog", "pig", "sheep", "crab", "koala",
+            "butterfly", "parrot", "hawk", "beetle", "lion", "tiger", "zebra",
+            "seahorse", "chicken", "cow", "starfish", "shrimp", "giraffe", "whale",
+            "eagle", "platypus", "rat", "wolf", "turtle", "mouse", "lobster",
+            "kangaroo", "horse", "octopus", "goat", "dolphin", "squirrel", "jellyfish",
+            "seal", "shark", "elephant", "deer", "ant", "albatross", "owl",
+            "pelican", "rabbit", "fox", "bat", "snake", "bear", "duck", "penguin",
+            "lizard"
+        ],
+       "sports": [
+            "skiing", "taekwondo", "surfing", "baseball", "kayaking", "canoeing",
+            "rugby", "skateboarding", "snooker", "gymnastics", "sailing", "badminton",
+            "bowling", "judo", "shooting", "wrestling", "darts", "basketball",
+            "hockey", "swimming", "karate", "row", "mma", "climbing", "speedway",
+            "equestrian", "soccer", "fishing", "motorcycling", "triathlon", "tennis",
+            "diving", "archery", "tabletennis", "hiking", "bmx", "hunting", "cycling",
+            "marathon", "boxing", "pingpong", "pool", "rally", "cricket", "track",
+            "field", "fencing", "snowboarding", "volleyball", "golf"
+        ],
+        "foods": [
+                "icecream", "macaron", "burger", "pizza", "fried", "bread", "waffle",
+                "cake", "sorbet", "cookie", "noodle", "gelato", "juice", "soup",
+                "casserole", "curry", "quiche", "salad", "tiramisu", "mousse", "sushi",
+                "grilled", "omelette", "pie", "chocolate", "dumpling", "roast", "tapioca",
+                "pudding", "stew", "coffee", "croissant", "sashimi", "cheese", "pancake",
+                "sandwich", "donut", "muffin", "bagel", "smoothie", "brownie", "samosa",
+                "tacos", "crepe", "yogurt", "baked", "pasta", "tea"
+        ],
+
+        "professions": [
+            "writer", "strategist", "economist", "producer", "poet", "psychologist",
+            "scientist", "biologist", "composer", "librarian", "doctor", "politician",
+            "architect", "artist", "researcher", "philosopher", "chef", "teacher",
+            "businessman", "actor", "filmmaker", "leader", "inventor", "entrepreneur",
+            "dancer", "journalist", "nurse", "mathematician", "explorer", "pilot",
+            "athlete", "engineer", "musician", "novelist", "chemist", "historian",
+            "scholar", "lawyer", "director", "author", "painter", "philanthropist",
+            "activist"
+        ],
+
+       "sciences": [
+            "climatology", "herpetofauna", "paleobotany", "biomechatronics", "paleontology",
+            "psychology", "microbiology", "cosmology", "herpetology", "algology",
+            "ecotoxicology", "astronomy", "anthropology", "archaeology", "nanotechnology",
+            "chemistry", "geochemistry", "sociology", "acoustics", "malacology",
+            "bionanotechnology", "entomology", "electromagnetism", "virology",
+            "astrophysics", "optics", "paleoclimatology", "taphonomy", "immunology",
+            "botany", "ecology", "ichthyology", "mammalogy", "volcanology", "biochemistry",
+            "genetics", "relativity", "geophysics", "bacteriology", "parasitology",
+            "biomimetics", "mechanics", "biophysics", "neuroscience", "thermodynamics",
+            "superconductivity", "biology", "oceanography", "biotechnology", "bioinformatics",
+            "astrobiology", "ornithology", "toxicology", "hydrology", "zoology", "geology",
+            "meteorology", "protozoology", "biomaterials", "astrochemistry", "seismology",
+            "ecophysiology", "criminology", "nanoscience", "geobiology", "phycology",
+            "biomechanics", "biogeochemistry", "bioelectronics", "pharmacology", "mycology",
+            "exoplanets", "materials", "physics"
+        ],
+        "countries": [
+            "Kenya", "Turkey", "Germany", "Colombia", "Thailand", "Peru", "SouthKorea",
+            "USA", "Sweden", "Finland", "Nigeria", "Iraq", "Indonesia", "Uzbekistan",
+            "Laos", "Australia", "SriLanka", "France", "Georgia", "Syria", "Turkmenistan",
+            "Switzerland", "Russia", "Malaysia", "Austria", "Myanmar", "Pakistan",
+            "Bangladesh", "Singapore", "India", "Belgium", "Morocco", "China", "Japan",
+            "NewZealand", "Lebanon", "Nepal", "Philippines", "Iran", "Azerbaijan",
+            "Kazakhstan", "Venezuela", "Norway", "Yemen", "UnitedKingdom", "Armenia",
+            "Tajikistan", "Mongolia", "Egypt", "Italy", "Jordan", "Chile", "Mexico",
+            "Portugal", "SouthAfrica", "Brazil", "Denmark", "Bhutan", "Israel",
+            "Argentina", "Vietnam", "Spain", "Kyrgyzstan", "Afghanistan", "Oman",
+            "Canada", "Cambodia", "Netherlands", "Qatar", "Palestine", "Brunei"
+        ]
+
+    }
+
     genre = random.choice(genres)
     words = genre_words.get(genre, [])
-
-    # Ensure there are at least two words in the genre
-    if len(words) < 2:
-        return None, None
     
-    # Randomly select two different words from the genre
     word1, word2 = random.sample(words, 2)
-    
-    # Check if they exist on Wikipedia
-    page1 = get_wikipedia_page(word1)
-    page2 = get_wikipedia_page(word2)
 
-    if page1 and page2:
-        return word1, word2
-    else:
-        return None, None
+    return genre, word1, word2
 
-if __name__ == "__main__":
-    genres = ["technology", "art", "science", "literature", "music"]
-    word1, word2 = generate_words(genres)
-    
 
-    print(get_wikipedia_page("Catholic"))
-    if word1 and word2:
-        print(f"Generated words: {word1}, {word2}")
-    else:
-        print("Could not find two suitable words.")
+
+# test 
+
+genre, word1, word2 = generate_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+print(f"Category: {genre}")
+print(f"Words: {word1}, {word2}")
+
+
+
+
+
+
+
+# valid words exist in the wikipedia database
+#     valid_words = set()
+
+#     # Iterate through all genres
+#     for genre in genres:
+#         words = genre_words.get(genre, [])
+
+#         for word in words:
+#             page = get_wikipedia_page(word)
+#             if page:
+#                 valid_words.add(word)
+
+#     return valid_words
+
+# def save_valid_words(valid_words, filename):
+#     with open(filename, 'w') as file:
+#         for word in valid_words:
+#             file.write(f"{word}\n")
+
+# if __name__ == "__main__":
+#     genres = ["animals", "sports", "foods", "professions", "sciences", "countries"]
+#     valid_words = generate_words(genres)
+#     save_valid_words(valid_words, "valid_words.txt")
