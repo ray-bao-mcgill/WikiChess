@@ -9,6 +9,8 @@ def semantic_score(w1, w2):
     return (w1.similarity(w2)) * 100 
 
 
+
+
 # ----------------------TESTING -------------------
 
 test_words = [
