@@ -134,14 +134,42 @@
     <!-- Past Articles Box -->
     <div id="blur-background"></div>
     <div id="past-articles">
-        <table id="whiteTable">
-            <h1>Move History:</h1>
-            <tr>
-                <th>Article</th>
-                <th>Distance</th>
+        <table style="width: 100%">
+            <tr style="width: inherit">
+                <td style="width:50%; vertical-align: top;">
+                    <table id="whiteTable" style="display: inline-block;">
+                    <h1>White Move History:</h1>
+                    <tr>
+                        <th style="padding-right: 100px">Article</h>
+                        <th>Distance</th>
+                    </tr>
+                    {% for move in moves1 %}
+                    <tr>
+                        <td>{{ moves1[loop.index-1] }}</td>
+                        {% if scores1 %}
+                        <td>{{ scores1[loop.index-1] }}</td>
+                        {% endif %}
+                    </tr>   
+                    {% endfor %}
+                </table></td>
+                <td style="width:50%; vertical-align: top;"> 
+                    <table id="blackTable" style="display: inline-block;">
+                    <h1>Black Move History:</h1>
+                    <tr>
+                        <th style="padding-right: 100px">Article</th>
+                        <th>Distance</th>
+                    </tr>
+                    {% for move in moves2 %}
+                    <tr>
+                        <td>{{ moves2[loop.index-1] }}</td>
+                        {% if scores2 %}
+                        <td>{{ scores2[loop.index-1] }}</td>
+                        {% endif %}
+                    </tr>   
+                    {% endfor %}
+                </table></td>
             </tr>
         </table>
-        
 </div>
 
     {% if moves1 %}

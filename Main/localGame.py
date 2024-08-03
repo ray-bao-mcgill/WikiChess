@@ -92,3 +92,25 @@ class LocalGame:
             self.turn = "Black"
         else:
             self.turn = "White"
+
+        def topTen(self, player):
+            if player == "Black":
+                guesses = self.past_moves2
+                scores = self.past_scores2
+            else:
+                guesses = self.past_moves1
+                scores = self.past_scores1
+        # Step 1: Combine guesses and scores into a list of tuples
+            combined = list(zip(guesses, scores))
+            
+            # Step 2: Sort the list by scores in descending order
+            combined.sort(key=lambda x: x[1], reverse=True)
+            
+            # Step 3: Extract the top 10 guesses and scores
+            top_guesses = [item[0] for item in combined[:10]]
+            top_scores = [item[1] for item in combined[:10]]
+            
+            # Step 4: Return the two lists
+            return top_guesses, top_scores
+
+        

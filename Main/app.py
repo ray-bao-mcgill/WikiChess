@@ -103,7 +103,9 @@ def localGame():
     
     return render_template('localGame.html', html_content=html_content, 
                            moves1=game.get_past_moves1(), 
-                           moves2=game.get_past_moves2(), 
+                           moves2=game.get_past_moves2(),
+                           scores1=game.get_past_scores1(),
+                           scores2=game.get_past_scores2(),
                            starting_genre=starting_word)
 
 
@@ -126,15 +128,18 @@ def catch_all(path):
         # return render_template('winscreen' player=player1)
     elif check.lower() == game.get_target2().lower():
         game.add_past_move2("REACHED")
-        
+
     if game.getTurn() == "White":
         game.add_past_move1(word)
     else:
         game.add_past_move2(word)
     return render_template('localGame.html', 
                            html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
-                           moves1=game.get_past_moves1(),
-                           moves2=game.get_past_moves2())
+                           moves1=game.get_past_moves1(), 
+                           moves2=game.get_past_moves2(),
+                           scores1=game.get_past_scores1(),
+                           scores2=game.get_past_scores2(),
+    )
 
 
 
