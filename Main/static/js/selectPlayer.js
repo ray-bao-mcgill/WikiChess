@@ -21,7 +21,7 @@ function showStartButton() {
     }, 100);
 
     startButton.addEventListener('click', function () {
-        window.location.href = 'http://localhost:5000/localGame'; // Replace with your actual game page URL
+        window.location.href = 'http://127.0.0.1:5000/localGame'; // Replace with your actual game page URL
     });
 }
 
