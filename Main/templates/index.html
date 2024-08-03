@@ -1,9 +1,32 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="static/css/torrey.css">
+<style>
+    .bgSvg{
+        position: absolute;
+        top: 0;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index: -10;
+    }
+</style>
+
+<svg class="bgSvg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="100,0 50,0 100,30" fill="#a6c9ed" stroke="transparent" stroke-width="2"></polygon>
+    <polygon points="0,100 0,70 50,100" fill="#a6c9ed" stroke="transparent" stroke-width="2"></polygon>
+
+    <polygon points="100,0 80,20 100,40" fill="#92bce4" stroke="transparent" stroke-width="2"></polygon>
+    <polygon points="50,0 70,20 60,0" fill="#b2d0f0" stroke="transparent" stroke-width="2"></polygon>
+    <polygon points="0,100 20,80 0,60" fill="#92bce4" stroke="transparent" stroke-width="2"></polygon>
+    <polygon points="50,100 30,80 40,100" fill="#b2d0f0" stroke="transparent" stroke-width="2"></polygon>
+</svg>
+
 <div class="homeContent">
     <h1 class="title" id="wikichess-title">
-        <span class="highlight first-letter">W</span>IKICHES<span class="highlight last-letter">S</span>
+        <span class="highlight first-letter">W</span>IKI<span class="highlight">C</span>HESS
     </h1>
+
+
     <p class="subtitle">Wiki-racer but better</p>
     <div class="buttons">
         <div class="button">

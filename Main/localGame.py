@@ -8,8 +8,8 @@ class LocalGame:
         self.past_scores1 = []
         self.past_moves2 = []
         self.past_scores2 = []
-        self.timer1 = 0
-        self.timer2 = 0
+        self.timer1 = 10
+        self.timer2 = 10
         self.turn = "White"
 
     def get_target1(self):

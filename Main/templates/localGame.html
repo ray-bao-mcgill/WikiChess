@@ -89,6 +89,7 @@
             overflow-y: auto;
             z-index: 1000;
             padding: 20px;
+            padding-top: 0;
             font-family: 'Roboto', sans-serif; /* Use wiki font */
         }
 
@@ -133,27 +134,14 @@
     <!-- Past Articles Box -->
     <div id="blur-background"></div>
     <div id="past-articles">
-        <h2>Past Articles Visited:</h2>
-        <div class="column">
-            <h3>Articles</h3>
-            <ul>
-                <li>article1</li>
-                <li>article2</li>
-                <li>article3</li>
-                <li>article4</li>
-                <li>article5</li>
-        </ul>
-    </div>
-    <div class="column">
-        <h3>Semantics</h3>
-        <ul>
-            <li>semantic1</li>
-            <li>semantic2</li>
-            <li>semantic3</li>
-            <li>semantic4</li>
-            <li>semantic5</li>
-        </ul>
-    </div>
+        <table id="whiteTable">
+            <h1>Move History:</h1>
+            <tr>
+                <th>Article</th>
+                <th>Distance</th>
+            </tr>
+        </table>
+        
 </div>
 
     {% if moves1 %}
