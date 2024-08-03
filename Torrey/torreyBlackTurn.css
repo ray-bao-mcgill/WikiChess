@@ -1,5 +1,5 @@
 :root {
-    --gradient: linear-gradient(90deg, #ddd, black, #ddd);
+    --gradient: linear-gradient(90deg, black, #ddd, black);
   }
   
   body {
@@ -25,10 +25,10 @@
   }
   
   .content {
-    background: black;
+    background: white;
     width: 70vw;
     padding: 3em;
-    box-shadow: 0 0 3em rgba(255,255,255);
+    box-shadow: 0 0 3em rgba(0,0,0);
     text-align: center;
   }
   
