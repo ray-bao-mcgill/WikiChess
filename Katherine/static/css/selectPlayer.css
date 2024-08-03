@@ -38,7 +38,7 @@ body {
 
 
 .player-image {
-    width: 100%; /* Adjust the size as needed */
+    width: 100px; /* Adjust the size as needed */
     height: auto;
     margin-bottom: 10px;
 }
