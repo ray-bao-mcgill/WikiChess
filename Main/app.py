@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import localGame as lg
 from generator import generate_genres_and_words
+import datetime
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretKey"
 socketio = SocketIO(app)
@@ -13,6 +14,7 @@ socketio = SocketIO(app)
 rooms = {}
 
 game = lg.LocalGame()
+
 
 # Function to scrape the Wikipedia page for its HTML content and remove language elements
 def scrape_wikipedia_page(url):
@@ -111,18 +113,22 @@ def localGame():
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
 def switchTurn():
-    if request.method == 'POST':
+        previous_player = game.getTurn()
         game.switchTurn()
-    return render_template('localGame.html', 
-                           html_content=scrape_wikipedia_page("https://en.wikipedia.org/wiki/Chess"), 
-                           moves1=game.get_past_moves1(), 
-                           moves2=game.get_past_moves2())
+        if previous_player == "White":
+            return render_template('torreyBlackTurn.html', url = "/wiki/"+game.get_past_moves1()[-1])
+        elif previous_player == "Black":
+            return render_template('torreyWhiteTurn.html', url = "/wiki/"+game.get_past_moves2()[-1])
 
 @app.route('/<path:path>')
 def catch_all(path):
     print(path)
-    word = path.split('/')[1]
-    check = ('').join(word.split('_'))
+    if path:
+        word = path.split('/')[1]
+    if word:
+        check = ('').join(word.split('_'))
+    else:
+        check = ""
     if check.lower() == game.get_target1().lower():
         game.add_past_move1("REACHED")
         # return render_template('winscreen' player=player1)
@@ -130,9 +136,22 @@ def catch_all(path):
         game.add_past_move2("REACHED")
 
     if game.getTurn() == "White":
-        game.add_past_move1(word)
+        l = game.get_past_moves1()
+        if len(l) > 0:
+            if l[-1] == word:
+                game.add_past_move1(word)
+                game.add_past_score1(100)
+        else:
+            game.add_past_move1(word)
+            game.add_past_score1(100)
     else:
+        l = game.get_past_moves2()
+        if len(l) > 0:
+            if l[-1] == word:
+                game.add_past_move2(word)
+                game.add_past_score2(100)
         game.add_past_move2(word)
+        game.add_past_score2(100)
     return render_template('localGame.html', 
                            html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
                            moves1=game.get_past_moves1(), 
