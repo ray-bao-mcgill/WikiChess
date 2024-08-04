@@ -25,7 +25,7 @@ def scrape_wikipedia_page(url):
         soup = BeautifulSoup(response.text, 'html.parser') #parse html content of the page 
 
         # Remove the sidebar with languages
-        if soup.find(id="p-lang"):
+        if soup.find(id="p-lang"):      
             soup.find(id="p-lang").decompose()
 
         # Remove any other language links

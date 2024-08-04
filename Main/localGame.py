@@ -112,7 +112,7 @@ class LocalGame:
         # Step 1: Combine guesses and scores into a list of tuples
         combined = list(zip(guesses, scores))
 
-        combined = [(guess, float(score)) for guess, score in combined]
+        combined = [(guess, float((score))) for guess, score in combined]
             
         # Step 2: Sort the list by scores in descending order
         combined.sort(key=lambda x: x[1], reverse=True)
