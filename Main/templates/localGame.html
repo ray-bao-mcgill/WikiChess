@@ -128,9 +128,9 @@
     <h1>Make Your Move.</h1>
 
     <!-- Timer and slider bar -->
-    <div id="timer">Time Left: 00:00</div>
-    <input type="range" id="slider" min="0" max="100" value="0">
-
+    <div id="timer">Time Left: <span id="seconds"></span>s</div>
+    <input type="range" id="slider" min="0" max="100" value="100">
+    <input id="targetTime" type="hidden" value="">
     <!-- Past Articles Box -->
     <div id="blur-background"></div>
     <div id="past-articles">
@@ -211,6 +211,26 @@
                 hidePastArticles();
             }
         });
+        
+        window.onload = function() {
+            document.getElementById('targetTime').value = Date.now() + 10000;
+            var targetTime = parseInt(document.getElementById('targetTime').value);
+            var currentTime = Date.now();
+            var timeLeft = targetTime - currentTime;
+            document.getElementById('seconds').innerText = timeLeft / 1000
+        
+            var interval = setInterval(() => {
+                var targetTime = parseInt(document.getElementById('targetTime').value);
+                var currentTime = Date.now();
+                var timeLeft = targetTime - currentTime;
+                document.getElementById('seconds').innerText = Math.round(timeLeft / 1000)
+                if (timeLeft <= 0) {
+                    window.location.href = '/switchTurn';
+                }
+            }, 1000);
+            }
+        ;
+            
     </script>
 </body>
 </html>

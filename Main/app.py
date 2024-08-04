@@ -5,7 +5,9 @@ from string import ascii_uppercase
 import requests
 from bs4 import BeautifulSoup
 import localGame as lg
+import spacy
 from generator import generate_genres_and_words
+import datetime
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretKey"
 socketio = SocketIO(app)
@@ -14,6 +16,7 @@ from semantic import semantic_score
 rooms = {}
 
 game = lg.LocalGame()
+
 
 # Function to scrape the Wikipedia page for its HTML content and remove language elements
 def scrape_wikipedia_page(url):
@@ -112,19 +115,26 @@ def localGame():
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
 def switchTurn():
-    if request.method == 'POST':
+        previous_player = game.getTurn()
         game.switchTurn()
-    return render_template('localGame.html', 
-                           html_content=scrape_wikipedia_page("https://en.wikipedia.org/wiki/Chess"), 
-                           moves1=game.get_past_moves1(), 
-                           moves2=game.get_past_moves2())
-
+        if previous_player == "White":
+            if len(game.get_past_moves1()) == 0:
+                return render_template('index.html') #Black WINS
+            return render_template('torreyBlackTurn.html', url = "/wiki/"+game.get_past_moves1()[-1])
+        elif previous_player == "Black":
+            if len(game.get_past_moves2()) == 0:
+                return render_template('index.html') #White WINS
+            return render_template('torreyWhiteTurn.html', url = "/wiki/"+game.get_past_moves2()[-1])
 
 @app.route('/<path:path>')
 def catch_all(path):
     print(path)
-    word = path.split('/')[1]
-    check = ('').join(word.split('_'))
+    if path:
+        word = path.split('/')[1]
+    if word:
+        check = ('').join(word.split('_'))
+    else:
+        check = ""
     if check.lower() == game.get_target1().lower():
         game.add_past_move1("REACHED")
         # return render_template('winscreen' player=player1)
@@ -133,23 +143,57 @@ def catch_all(path):
 
     score = semantic_score(word, game.get_target1()) if game.getTurn() == "White" else semantic_score(word, game.get_target2())
 
+    l1 = game.get_past_moves1()
+    l2 = game.get_past_moves2()
+
     if game.getTurn() == "White":
-        game.add_past_move1(word)
-        game.add_past_score1(score)
-    else:
-        game.add_past_move2(word)
-        game.add_past_score2(score)
-
-    top_moves, top_scores = game.top_ten(game.getTurn())
-
-    return render_template('localGame.html', 
+        if len(l2) != 0:
+            if l2[-1] == word:
+                top_moves, top_scores = game.top_ten(game.getTurn())
+                return render_template('localGame.html', 
                            html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
                            moves1=game.get_past_moves1(), 
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
                            top_moves = top_moves, 
-                            top_scores = top_scores)
+                           top_scores = top_scores)
+        if word not in l1:
+            game.add_past_move1(word)
+            game.add_past_score1(score)
+        top_moves, top_scores = game.top_ten(game.getTurn())
+        return render_template('localGame.html', 
+                    html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
+                    moves1=game.get_past_moves1(), 
+                    moves2=game.get_past_moves2(),
+                    scores1=game.get_past_scores1(),
+                    scores2=game.get_past_scores2(),
+                    top_moves = top_moves, 
+                    top_scores = top_scores)
+    else:
+        if len(l1) != 0:
+            if l1[-1] == word:
+                top_moves, top_scores = game.top_ten(game.getTurn())
+                return render_template('localGame.html', 
+                           html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
+                           moves1=game.get_past_moves1(), 
+                           moves2=game.get_past_moves2(),
+                           scores1=game.get_past_scores1(),
+                           scores2=game.get_past_scores2(),
+                           top_moves = top_moves, 
+                           top_scores = top_scores)
+        if word not in l2:
+            game.add_past_move2(word)
+            game.add_past_score2(score)
+        top_moves, top_scores = game.top_ten(game.getTurn())
+        return render_template('localGame.html', 
+                    html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
+                    moves1=game.get_past_moves1(), 
+                    moves2=game.get_past_moves2(),
+                    scores1=game.get_past_scores1(),
+                    scores2=game.get_past_scores2(),
+                    top_moves = top_moves, 
+                    top_scores = top_scores)
 
 @socketio.on("asdf")
 def asdf(data):
