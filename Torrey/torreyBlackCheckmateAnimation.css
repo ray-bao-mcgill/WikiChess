@@ -132,8 +132,8 @@ body {
 
 .check-mate {
     position: absolute;
-    top: 50%;
-    left: 9%;
+    top: 60%;
+    left: -25%;
     transform: translate(-50%, -50%);
     font-family: 'PANTON';
     font-size: 1.7em;
@@ -149,4 +149,34 @@ body {
     right: -150%;
     width: 50vh; /* Adjust size as needed */
     height: auto;
+}
+.menu-button, .play-again-button {
+    position: absolute;
+    width: 150px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    font-family: 'PANTON';
+    font-size: 1.2em;
+    color: #f1faee;
+    background-color: #1d3557;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-button {
+    left: -400px; /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.play-again-button {
+    right: -400px; /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-button:hover, .play-again-button:hover {
+    background-color: #a8dadc;
+    color: #1d3557;
 }

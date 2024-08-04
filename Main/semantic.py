@@ -1,4 +1,5 @@
 import spacy
+import math 
 
 nlp = spacy.load('en_core_web_lg')  # or 'en_core_web_md'
 
@@ -10,10 +11,11 @@ def semantic_score(w1, w2):
     s1 = nlp(w1)
     s2 = nlp(w2)
 
-    similarity = s1.similarity(s2)
+    similarity = s1.similarity(s2) * 100 
     
     # return as % 
-    return similarity * 100
+      
+    return "{:.1f}".format(similarity)
 
 
 # ----------------------TESTING -------------------
@@ -31,4 +33,4 @@ test_words = [
 
 for word1, word2 in test_words:
     score = semantic_score(word1, word2)
-    print(f"Semantic score between '{word1}' and '{word2}': {score:.2f}")
+    print(f"Semantic score between '{word1}' and '{word2}': {score}")

@@ -140,14 +140,14 @@
                     <table id="whiteTable" style="display: inline-block;">
                     <h1>White Move History:</h1>
                     <tr>
-                        <th style="padding-right: 100px">Article</h>
-                        <th>Distance</th>
+                        <th style="text-align: center;">Article</h>
+                        <th style = "text-align: center;">Similarity Score</th>
                     </tr>
                     {% for move in moves1 %}
                     <tr>
-                        <td>{{ moves1[loop.index-1] }}</td>
+                        <td style = "text-align: center;">{{ moves1[loop.index-1] }}</td>
                         {% if scores1 %}
-                        <td>{{ scores1[loop.index-1] }}</td>
+                        <td style = "text-align: center;">{{ scores1[loop.index-1] }}</td>
                         {% endif %}
                     </tr>   
                     {% endfor %}
@@ -156,14 +156,14 @@
                     <table id="blackTable" style="display: inline-block;">
                     <h1>Black Move History:</h1>
                     <tr>
-                        <th style="padding-right: 100px">Article</th>
-                        <th>Distance</th>
+                        <th style="padding-right: 100px; text-align: center;">Article</th>
+                        <th style = "text-align: center;">Distance</th>
                     </tr>
                     {% for move in moves2 %}
                     <tr>
-                        <td>{{ moves2[loop.index-1] }}</td>
+                        <td style = "text-align: center;">{{ moves2[loop.index-1] }}</td>
                         {% if scores2 %}
-                        <td>{{ scores2[loop.index-1] }}</td>
+                        <td style = "text-align: center;">{{ scores2[loop.index-1] }}</td>
                         {% endif %}
                     </tr>   
                     {% endfor %}
