@@ -14,9 +14,121 @@
 
     <!-- Google Font for wiki font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/localGame.css">
-    <link rel="stylesheet" href="../../static/css/localGame.css">
     <!-- CSS -->
+     <style>
+        /* torreyLocalGameBlack.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #456b9d;
+    overflow: hidden;
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    background-color: #a8dadc;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #457b9d;
+    padding: 20px;
+    text-align: center;
+    color: #f1faee;
+    flex-shrink: 0;
+    transition: top 0.3s;
+}
+
+.header .title {
+    margin: 0;
+    font-size: 2.5em;
+    color: #1d3557; /* Changed color to #1d3557 */
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.left-panel, .right-panel {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content {
+    width: 60%;
+    background-color: #f1faee;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #1d3557;
+    flex-grow: 1;
+    position: relative;
+}
+
+.scrollable-content {
+    height: 150%;
+}
+
+.wiki-button, .timer {
+    width: 150px; /* Fixed width for both elements */
+    height: 50px; /* Fixed height for both elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a8dadc;
+    border: 2px solid #1d3557;
+    border-radius: 10px;
+    font-size: 1.2em;
+    color: #1d3557;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.wiki-button:hover {
+    background-color: #f1faee;
+}
+
+.timer {
+    background-color: #e63946;
+    color: #f1faee;
+    font-size: 1.5em;
+    pointer-events: none;
+}
+
+.chess-piece img {
+    width: 80px;
+    height: auto;
+}
+
+.similarity-score {
+    text-align: center;
+    background-color: #1d3557;
+    color: #f1faee;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.similarity-score p {
+    margin: 5px 0;
+}
+
+     </style>
     <style>
 
         #past-articles {
@@ -116,18 +228,12 @@
   
 <div class="main-container">
     <header class="header">
-        <h1 class="title">Black Move!</h1>
+        <h1 class="title">{{ turn }} Move!</h1>
     </header>
     <div class="content-container">
         <div class="left-panel">
             <button class="wiki-button">WikiChess!</button>
             <div class="chess-piece">
-                <img onerror='this.style.display = "none"' src="static/images/black_king.png" alt="Black King">
-                <img onerror='this.style.display = "none"' src="../../static/images/black_king.png" alt="Black King">
-            </div>
-            <div class="similarity-score">
-                <p>47.2</p>
-                <p>SEMANTIC SIMILARITY</p>
             </div>
         </div>
         <div class="main-content" id="main-content">
@@ -142,15 +248,9 @@
         </div>
         <div class="right-panel">
             <div class="timer">
-                <p>00:15</p>
+                <p id="countdown">00:15</p>
             </div>
             <div class="chess-piece">
-                <img onerror='this.style.display = "none"' src="static/images/whiter_king.png" alt="White King">
-                <img onerror='this.style.display = "none"' src="../../static/images/whiter_king.png" alt="White King">
-            </div>
-            <div class="similarity-score">
-                <p>47.2</p>
-                <p>Closest SIMILARITY</p>
             </div>
         </div>
     </div>
@@ -173,6 +273,28 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    window.location.href = "http://127.0.0.1:5000/switchTurn";
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const countdownElement = document.getElementById("countdown");
+            const duration = 15; // 15 seconds
+            startTimer(duration, countdownElement);
+        };
         // past articles visibility 
         function showPastArticles() {
             document.getElementById('blur-background').style.display = 'block';

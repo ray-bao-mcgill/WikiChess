@@ -110,7 +110,8 @@ def localGame():
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
-                           starting_genre=starting_word)
+                           starting_genre=starting_word,
+                           turn = game.getTurn())
 
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
@@ -161,7 +162,8 @@ def catch_all(path):
                            bMoves = game.bMoves,
                            wMoves = game.wMoves,
                            top_moves = top_moves, 
-                           top_scores = top_scores)
+                           top_scores = top_scores,
+                           turn = game.getTurn())
         if word not in l1:
             game.wMoves -= 1
             game.add_past_move1(word)
@@ -178,7 +180,8 @@ def catch_all(path):
                     bMoves = game.bMoves,
                     wMoves = game.wMoves,
                     top_moves = top_moves, 
-                    top_scores = top_scores)
+                    top_scores = top_scores,
+                    turn = game.getTurn())
     elif game.getTurn() == "Black":
         if len(l1) != 0:
             if l1[-1] == word:
@@ -192,7 +195,8 @@ def catch_all(path):
                            bMoves = game.bMoves,
                            wMoves = game.wMoves,
                            top_moves = top_moves, 
-                           top_scores = top_scores)
+                           top_scores = top_scores,
+                           turn = game.getTurn())
         if word not in l2:
             game.bMoves -= 1
             game.add_past_move2(word)
@@ -210,7 +214,8 @@ def catch_all(path):
                     bMoves = game.bMoves,
                     wMoves = game.wMoves,
                     top_moves = top_moves, 
-                    top_scores = top_scores)
+                    top_scores = top_scores,
+                    turn = game.getTurn())
 
 @socketio.on("asdf")
 def asdf(data):
