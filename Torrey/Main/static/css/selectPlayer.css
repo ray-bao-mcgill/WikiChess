@@ -12,7 +12,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        width: 100vw;
+        width: 100%;
         overflow: hidden;
     }
 
@@ -25,10 +25,14 @@
         cursor: pointer;
         transition: background-color 0.3s ease, flex 0.3s ease;
         position: relative;
+        height: 100vh;
+        width: 100%;
     }
 
     .player-section:hover {
         background-color: #457b9d;
+        height: 100vh;
+        width: 100%;
     }
 
     .player-image {
@@ -80,4 +84,5 @@
     #start-game:hover {
         transform: scale(1.2); /* Increase size on hover */
         background-color: #457b9d; /* Change hover background color */
+        
     }
