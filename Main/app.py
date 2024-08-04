@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
@@ -110,7 +110,8 @@ def localGame():
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
-                           starting_genre=starting_word)
+                           starting_genre=starting_word,
+                           turn = game.getTurn())
 
 
 @app.route('/switchTurn', methods=['GET', 'POST'])
@@ -118,12 +119,12 @@ def switchTurn():
         previous_player = game.getTurn()
         game.switchTurn()
         if previous_player == "White":
-            game.setwMoves(3)
+            game.setwMoves(4)
             if len(game.get_past_moves1()) == 0:
                 return render_template('index.html') #Black WINS
             return render_template('torreyBlackTurn.html', url = "/wiki/"+game.get_past_moves1()[-1])
         elif previous_player == "Black":
-            game.setbMoves(3)
+            game.setbMoves(4)
             if len(game.get_past_moves2()) == 0:
                 return render_template('index.html') #White WINS
             return render_template('torreyWhiteTurn.html', url = "/wiki/"+game.get_past_moves2()[-1])
@@ -161,7 +162,8 @@ def catch_all(path):
                            bMoves = game.bMoves,
                            wMoves = game.wMoves,
                            top_moves = top_moves, 
-                           top_scores = top_scores)
+                           top_scores = top_scores,
+                           turn = game.getTurn())
         if word not in l1:
             game.wMoves -= 1
             game.add_past_move1(word)
@@ -178,7 +180,8 @@ def catch_all(path):
                     bMoves = game.bMoves,
                     wMoves = game.wMoves,
                     top_moves = top_moves, 
-                    top_scores = top_scores)
+                    top_scores = top_scores,
+                    turn = game.getTurn())
     elif game.getTurn() == "Black":
         if len(l1) != 0:
             if l1[-1] == word:
@@ -192,7 +195,8 @@ def catch_all(path):
                            bMoves = game.bMoves,
                            wMoves = game.wMoves,
                            top_moves = top_moves, 
-                           top_scores = top_scores)
+                           top_scores = top_scores,
+                           turn = game.getTurn())
         if word not in l2:
             game.bMoves -= 1
             game.add_past_move2(word)
@@ -210,7 +214,8 @@ def catch_all(path):
                     bMoves = game.bMoves,
                     wMoves = game.wMoves,
                     top_moves = top_moves, 
-                    top_scores = top_scores)
+                    top_scores = top_scores,
+                    turn = game.getTurn())
 
 @socketio.on("asdf")
 def asdf(data):
@@ -267,6 +272,36 @@ def disconnect():
     
     send({"name": name, "message": "has left the room"}, to=room)
     print(f"{name} has left the room {room}")
+
+nlp = spacy.load("en_core_web_lg")
+
+@app.route('/calculate_similarity', methods=['POST'])
+def calculate_similarity():
+    data = request.get_json()
+    guess = data['guess']
+    
+    # Replace 'target_article' with the actual target article text
+    target_article = "The actual target article text here"
+    
+    # Calculate semantic similarity
+    similarity = semantic_score(guess, target_article)
+    
+    return jsonify({'similarity': similarity})
+
+def semantic_score(w1, w2):
+    # replace underscores with spaces if present
+    w1 = w1.replace('_', ' ')
+    w2 = w2.replace('_', ' ')
+
+    s1 = nlp(w1)
+    s2 = nlp(w2)
+
+    similarity = s1.similarity(s2) * 100 
+    
+    # return as % 
+    return "{:.1f}".format(similarity)
+
+
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Guess</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="guess.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container1">
+            <h1>Make a Guess!</h1>
+            <form id="guessForm">
+                <input type="text" id="guessInput" placeholder="Enter your guess here">
+                <button type="submit" id="submitButton">Submit</button>
+            </form>
+            <div class="guess-count">
+                <p>Guesses left: <span id="guessNumber">3</span></p>
+            </div>
+        </div>
+
+        <div class="history-box">
+            <h2>Guess History</h2>
+            <ul id="historyList">
+                <!-- Guesses will appear here -->
+            </ul>
+        </div>
+    </div>
+
+    <script> 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const submitButton = document.getElementById('submitButton');
+        const guessNumberElement = document.getElementById('guessNumber');
+        const guessInput = document.getElementById('guessInput');
+        const historyList = document.getElementById('historyList');
+        let guessCount = parseInt(guessNumberElement.textContent, 10);
+
+        document.getElementById('guessForm').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form from submitting and reloading the page
+
+            if (guessCount > 0) {
+                const guessValue = guessInput.value.trim();
+                if (guessValue) {
+                    // Create a new list item
+                    const listItem = document.createElement('li');
+                    listItem.textContent = guessValue;
+                    // Append the new item to the history list
+                    historyList.appendChild(listItem);
+                    // Clear the input field
+                    guessInput.value = '';
+                    // Decrement the guess count
+                    guessCount -= 1;
+                    guessNumberElement.textContent = guessCount;
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

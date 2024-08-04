@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Your Move.</title>
+    
+    <!-- wiki CSS -->
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles&skin=vector">
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.visualEditor.desktopArticleTarget.noscript&only=styles&skin=vector">
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.cite.styles&only=styles&skin=vector">
+    
+
+    <!-- Google Font for wiki font -->
+    <link rel="stylesheet" href="static/css/localGame.css">
+    <!-- CSS -->
+    <style>
+
+        #past-articles {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the box */
+            width: 60%;
+            height: 60%;
+            background-color: #d4e2f0;
+            border: 2px solid #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 20px;
+            padding-top: 0;
+            font-family: 'Roboto', sans-serif; /* Use wiki font */
+        }
+
+        #past-articles .column {
+        display: inline-block;
+        vertical-align: top;
+        width: 48%; 
+        margin-right: 2%;
+        }
+
+        #past-articles .column:last-child {
+            margin-right: 0;
+        }
+
+        #past-articles ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #past-articles li {
+            margin-bottom: 10px;
+        }
+        #blur-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+  {% block content %}
+  {% endblock %}
+<div class="main-container">
+    <header class="header">
+        <h1 class="title">Black Move!</h1>
+    </header>
+    <div class="content-container">
+        <div class="left-panel">
+            <button class="wiki-button">WikiChess!</button>
+            <div class="chess-piece">
+                <img src="static/images/black_king.png" alt="Black King">
+            </div>
+            <div class="similarity-score">
+                <p>47.2</p>
+                <p>SEMANTIC SIMILARITY</p>
+            </div>
+        </div>
+        {% block scrape %}
+        {% endblock %}
+        </div>
+        <div class="right-panel">
+            <div class="timer">
+                <p>00:15</p>
+            </div>
+            <div class="chess-piece">
+                <img src="static/images/whiter_king.png" alt="White King">
+            </div>
+            <div class="similarity-score">
+                <p>47.2</p>
+                <p>Closest SIMILARITY</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
