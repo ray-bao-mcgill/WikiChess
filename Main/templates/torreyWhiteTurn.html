@@ -10,7 +10,7 @@
     <div class="container">
         <h1 class="title">White Moves</h1>
         <div class="buttons">
-            <button class="button">Guess!!</button>
+            <button class="button" onclick="guess()">Guess!!</button>
             <button class="button" onclick="play()">Play!!</button>
         </div>
     </div>
@@ -25,6 +25,11 @@
     <div class="shape rook" style="top: 50%; left: 15%;"></div>
 
     <script>
+
+    function guess() {
+            window.location.href = "/guess"
+        }
+
     function play() {
         window.location.href = document.getElementById('url').innerHTML;
     }

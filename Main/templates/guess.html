@@ -6,7 +6,7 @@
     <title>Make a Guess</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="guess.css">
+    <link rel="stylesheet" href="static/css/guess.css">
 </head>
 <body>
     <div class="main-container">
@@ -60,9 +60,9 @@
                             guessNumberElement.textContent = guessCount;
                         }
                         if (guessValue.toLowerCase() == document.getElementById('secret1').innerHTML.toLowerCase()) {
-                            window.location.href = "/BlackWin";
+                            window.location.href = "http://127.0.0.1:5000/BlackWin";
                         } else if (guessValue.toLowerCase() == document.getElementById('secret2').innerHTML.toLowerCase()) {
-                            window.location.href = "/WhiteWin";
+                            window.location.href = "http://127.0.0.1:5000/WhiteWin";
                         } else if (guessCount == 0) {
                             window.location.href = document.getElementById('url').innerHTML;
                         }

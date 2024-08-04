@@ -121,13 +121,35 @@ def switchTurn():
         if previous_player == "White":
             game.setwMoves(4)
             if len(game.get_past_moves1()) == 0:
-                return render_template('index.html') #Black WINS
+                return render_template('BlackWin.html') #Black WINS
             return render_template('torreyBlackTurn.html', url = "/wiki/"+game.get_past_moves1()[-1])
         elif previous_player == "Black":
             game.setbMoves(4)
             if len(game.get_past_moves2()) == 0:
-                return render_template('index.html') #White WINS
+                return render_template('WhiteWin.html') #White WINS
             return render_template('torreyWhiteTurn.html', url = "/wiki/"+game.get_past_moves2()[-1])
+
+@app.route('/guess', methods=['GET', 'POST'])
+def guess():
+    game.switchTurn()
+    previous_player = game.getTurn()
+    if previous_player == "White":
+        game.setwMoves(3)
+        if len(game.get_past_moves1()) == 0:
+            return render_template('index.html') #Black WINS
+        return render_template('guess.html', url = "/wiki/"+game.get_past_moves1()[-1], word1=game.get_target1(), word2=game.get_target2())
+    elif previous_player == "Black":
+        game.setbMoves(3)
+        if len(game.get_past_moves2()) == 0:
+            return render_template('index.html') #White WINS
+        return render_template('guess.html', url = "/wiki/"+game.get_past_moves2()[-1], word1=game.get_target1(), word2=game.get_target2())
+@app.route('/BlackWin')
+def black():
+    return render_template('BlackWin.html')
+
+@app.route('/WhiteWin')
+def white():
+    return render_template('WhiteWin.html')
 
 @app.route('/<path:path>')
 def catch_all(path):
@@ -139,10 +161,9 @@ def catch_all(path):
     else:
         check = ""
     if check.lower() == game.get_target1().lower():
-        game.add_past_move1("REACHED")
-        # return render_template('winscreen' player=player1)
+        return render_template('WhiteWin.html')
     elif check.lower() == game.get_target2().lower():
-        game.add_past_move2("REACHED")
+        return render_template('BlackWin.html')
 
     score = semantic_score(word, game.get_target1()) if game.getTurn() == "White" else semantic_score(word, game.get_target2())
 
