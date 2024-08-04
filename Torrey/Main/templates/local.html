@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/selectPlayer.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="player1" class="player-section" onclick="selectPlayer(1)">
+            <div id="p1Content">
+                <img src="static/images/black king.png" alt="black_piece" class="player-image">
+                <div class="turn-overlay" id="word1"></div>
+            </div>
+        </div>
+        <div id="player2" class="player-section" onclick="selectPlayer(2)">
+            <div id="p2Content">
+                <img src="static/images/white king.png" alt="white_piece" class="player-image">
+                <div class="turn-overlay" id="word2"></div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none" id="secret1">{{ word1 }}</div>
+    <div style="display:none" id="secret2">{{ word2 }}</div>
+    
+    <script src="static/js/selectPlayer.js"></script> 
+
+
+    <script>
+
+    </script>
+
+</body>
+</html>

@@ -1,7 +1,5 @@
 class LocalGame:
     def __init__(self):
-        self.wMoves = 3
-        self.bMoves = 3
         self.player1 = "White"
         self.player2 = "Black"
         self.target1 = ""
@@ -37,12 +35,6 @@ class LocalGame:
 
     def set_timer2(self, timer2):
         self.timer2 = timer2
-
-    def setbMoves(self, bMoves):
-        self.bMoves = bMoves
-
-    def setwMoves(self, wMoves):
-        self.wMoves = wMoves
 
     def get_player1(self):
         return self.player1
@@ -112,7 +104,7 @@ class LocalGame:
         # Step 1: Combine guesses and scores into a list of tuples
         combined = list(zip(guesses, scores))
 
-        combined = [(guess, float((score))) for guess, score in combined]
+        combined = [(guess, float(score)) for guess, score in combined]
             
         # Step 2: Sort the list by scores in descending order
         combined.sort(key=lambda x: x[1], reverse=True)

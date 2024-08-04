@@ -1,0 +1,102 @@
+/* Define the custom font */
+@font-face {
+    font-family: 'PANTON';
+    src: url("Panton-Trial-Black.ttf") format('truetype');
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #456b9d;
+    font-family: 'PANTON';
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.title {
+    font-size: 6em;
+    margin-bottom: 20px;
+    transition: color 0.3s, text-decoration 0.3s;
+    color: #a8dadc;
+}
+
+.title:hover {
+    color: #e63946;
+    text-decoration: underline;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap to move buttons closer */
+}
+
+.button {
+    background-color: #f1faee;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    width: 150px; /* Fixed width for both buttons */
+    height: 50px; /* Fixed height for both buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-family: 'PANTON', sans-serif;
+}
+
+.button:hover {
+    background-color: #a8dadc;
+}
+
+/* Chess piece shapes */
+.shape {
+    position: absolute;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    animation: move 5s infinite;
+}
+
+.shape:nth-child(odd) {
+    animation-duration: 3s;
+}
+
+.shape:nth-child(even) {
+    animation-duration: 4s;
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Knight piece */
+.knight {
+    background-image: url("knight.png");
+    filter:brightness(2);
+}
+
+/* Rook piece */
+.rook {
+    background-image: url("rook.png");
+    filter:brightness(2);
+
+}
