@@ -89,6 +89,10 @@ def online():
 
     return render_template("online.html")
 
+@app.route("/howtoPlay")
+def howtoPlay():
+    return render_template("howtoPlay.html")
+
 @app.route("/room")
 def room():
     room = session.get("room")

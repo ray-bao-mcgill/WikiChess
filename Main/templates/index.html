@@ -96,7 +96,7 @@
         <div class="button" onclick="onlinePlay()">
             <span class="button-text">Online</span>
         </div>
-        <div class="button" onclick="onlinePlay()">
+        <div class="button" onclick="howtoPlay()">
             <span class="button-text">How To Play</span>
         </div>
     </div>
@@ -113,6 +113,10 @@
         // Add your online play functionality here
         window.location.href = 'http://127.0.0.1:5000/online';
     }
+    function howtoPlay() {
+        window.location.href = 'http://127.0.0.1:5000/howtoPlay'; // Redirects to the player selection page
+        }
+    
 </script>
 
 {% endblock %}
