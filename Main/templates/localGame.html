@@ -6,74 +6,18 @@
     <title>Make Your Move.</title>
     
     <!-- wiki CSS -->
+     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles&skin=vector">
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.visualEditor.desktopArticleTarget.noscript&only=styles&skin=vector">
     <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=ext.cite.styles&only=styles&skin=vector">
+    
 
     <!-- Google Font for wiki font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="static/css/localGame.css">
+    <link rel="stylesheet" href="../../static/css/localGame.css">
     <!-- CSS -->
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 20px;
-        }
-        
-        .infobox {
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            font-size: 0.9em;
-        }
-
-        .infobox th, .infobox td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        .infobox th {
-            background-color: #f1f1f1;
-            font-weight: bold;
-        }
-
-        .infobox .infobox-title {
-            font-size: 1.2em;
-            text-align: center;
-            background-color: #0073e6;
-            color: white;
-            padding: 15px;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .infobox img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .infobox-caption {
-            font-size: 0.8em;
-            color: #555;
-            padding: 5px 0;
-            text-align: center;
-        }
-
-        #timer { 
-            font-size: 2em;
-            margin: 20px 0;
-        }
-
-        #slider {
-            width: 100%;
-            margin: 20px 0;
-        }
 
         #past-articles {
             display: none;
@@ -125,12 +69,9 @@
     </style>
 </head>
 <body>
-    <h1>Make Your Move.</h1>
+    {{ bMoves }}
+    {{ wMoves }}
 
-    <!-- Timer and slider bar -->
-    <div id="timer">Time Left: <span id="seconds"></span>s</div>
-    <input type="range" id="slider" min="0" max="100" value="100">
-    <input id="targetTime" type="hidden" value="">
     <!-- Past Articles Box -->
     <div id="blur-background"></div>
     <div id="past-articles">
@@ -172,18 +113,63 @@
         </table>
 </div>
 
-    {% if moves1 %}
-    <h2>Past Moves:</h2>
-        {% for move in moves1 %}
-        <p>{{ move }}</p>
-        {% endfor %}
-    {% endif %}
-    {% if html_content %}
-        <h2>Scraped Content:</h2>
-        <div id="content" class="mw-body" style="border: 1px solid #000; padding: 10px;">
-            {{ html_content | safe }}
+  
+<div class="main-container">
+    <header class="header">
+        <h1 class="title">Black Move!</h1>
+    </header>
+    <div class="content-container">
+        <div class="left-panel">
+            <button class="wiki-button">WikiChess!</button>
+            <div class="chess-piece">
+                <img onerror='this.style.display = "none"' src="static/images/black_king.png" alt="Black King">
+                <img onerror='this.style.display = "none"' src="../../static/images/black_king.png" alt="Black King">
+            </div>
+            <div class="similarity-score">
+                <p>47.2</p>
+                <p>SEMANTIC SIMILARITY</p>
+            </div>
         </div>
-    {% endif %}
+        <div class="main-content" id="main-content">
+            <div class="scrollable-content">
+                {% if html_content %}
+                <h2>Article:</h2>
+                <div id="content" class="mw-body" style="border: 1px solid #000; padding: 10px;">
+                    {{ html_content | safe }}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="timer">
+                <p>00:15</p>
+            </div>
+            <div class="chess-piece">
+                <img onerror='this.style.display = "none"' src="static/images/whiter_king.png" alt="White King">
+                <img onerror='this.style.display = "none"' src="../../static/images/whiter_king.png" alt="White King">
+            </div>
+            <div class="similarity-score">
+                <p>47.2</p>
+                <p>Closest SIMILARITY</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainContent = document.getElementById('main-content');
+        const header = document.querySelector('.header');
+
+        mainContent.addEventListener('scroll', function() {
+            if (mainContent.scrollTop > 0) {
+                header.style.top = `-${mainContent.scrollTop}px`;
+            } else {
+                header.style.top = '0px';
+            }
+        });
+    });
+</script>
+
 
     <!-- JAVASCRIPT -->
     <script>
@@ -211,24 +197,7 @@
                 hidePastArticles();
             }
         });
-        
-        window.onload = function() {
-            document.getElementById('targetTime').value = Date.now() + 10000;
-            var targetTime = parseInt(document.getElementById('targetTime').value);
-            var currentTime = Date.now();
-            var timeLeft = targetTime - currentTime;
-            document.getElementById('seconds').innerText = timeLeft / 1000
-        
-            var interval = setInterval(() => {
-                var targetTime = parseInt(document.getElementById('targetTime').value);
-                var currentTime = Date.now();
-                var timeLeft = targetTime - currentTime;
-                document.getElementById('seconds').innerText = Math.round(timeLeft / 1000)
-                if (timeLeft <= 0) {
-                    window.location.href = '/switchTurn';
-                }
-            }, 1000);
-            }
+    
         ;
             
     </script>
