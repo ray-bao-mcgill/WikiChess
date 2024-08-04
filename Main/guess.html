@@ -31,32 +31,54 @@
 
     <script> 
     document.addEventListener('DOMContentLoaded', (event) => {
-        const submitButton = document.getElementById('submitButton');
-        const guessNumberElement = document.getElementById('guessNumber');
-        const guessInput = document.getElementById('guessInput');
-        const historyList = document.getElementById('historyList');
-        let guessCount = parseInt(guessNumberElement.textContent, 10);
+    const submitButton = document.getElementById('submitButton');
+    const guessNumberElement = document.getElementById('guessNumber');
+    const guessInput = document.getElementById('guessInput');
+    const historyList = document.getElementById('historyList');
+    let guessCount = parseInt(guessNumberElement.textContent, 10);
 
-        document.getElementById('guessForm').addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent form from submitting and reloading the page
+    document.getElementById('guessForm').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent form from submitting and reloading the page
 
-            if (guessCount > 0) {
-                const guessValue = guessInput.value.trim();
-                if (guessValue) {
+        if (guessCount > 0) {
+            const guessValue = guessInput.value.trim();
+            if (guessValue) {
+                try {
+                    // Send guess to the server for similarity calculation
+                    const response = await fetch('/calculate_similarity', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            guess: guessValue,
+                        }),
+                    });
+                    
+                    const data = await response.json();
+                    const similarity = data.similarity;
+
                     // Create a new list item
                     const listItem = document.createElement('li');
-                    listItem.textContent = guessValue;
+                    listItem.textContent = `${guessValue} (Similarity: ${similarity}%)`;
+                    
                     // Append the new item to the history list
                     historyList.appendChild(listItem);
+                    
                     // Clear the input field
                     guessInput.value = '';
+                    
                     // Decrement the guess count
                     guessCount -= 1;
                     guessNumberElement.textContent = guessCount;
+                } catch (error) {
+                    console.error('Error calculating similarity:', error);
                 }
             }
-        });
+        }
     });
+});
+
     </script>
 </body>
 </html>
