@@ -75,7 +75,7 @@ body {
 .vertical {
     width: 20px; /* Adjust size for larger piece */
     height: 40px; /* Adjust size for larger piece */
-    background-color: white;
+    background-color: #a8dadc;
 }
 
 .horizontal {
@@ -84,7 +84,7 @@ body {
     left: -15px;
     width: 50px; /* Adjust size for larger piece */
     height: 15px; /* Adjust size for larger piece */
-    background-color: white;
+    background-color: #a8dadc;
 }
 
 .crown {
@@ -92,21 +92,21 @@ body {
     height: 0;
     border-left: 30px solid transparent; /* Adjust size for larger piece */
     border-right: 30px solid transparent; /* Adjust size for larger piece */
-    border-top: 40px solid white; /* Adjust size for larger piece */
+    border-top: 40px solid #a8dadc; /* Adjust size for larger piece */
     margin-top: -10px;
 }
 
 .neck {
     width: 30px; /* Adjust size for larger piece */
     height: 30px; /* Adjust size for larger piece */
-    background-color: white;
+    background-color: #a8dadc;
     margin-top: -10px;
 }
 
 .body {
     width: 70px; /* Adjust size for larger piece */
     height: 120px; /* Adjust size for larger piece */
-    background-color: white;
+    background-color: #a8dadc;
     border-radius: 10px;
     margin-top: -10px;
 }
@@ -114,7 +114,7 @@ body {
 .base {
     width: 90px; /* Adjust size for larger piece */
     height: 50px; /* Adjust size for larger piece */
-    background-color: white;
+    background-color: #a8dadc;
     border-radius: 5px;
     margin-top: -10px;
 }
@@ -132,13 +132,52 @@ body {
 
 .check-mate {
     position: absolute;
-    top: 50%;
-    left: 9%;
+    top: 60%;
+    left: -25%;
     transform: translate(-50%, -50%);
     font-family: 'PANTON';
     font-size: 1.7em;
-    color: white;
+    color: #a8dadc;
     opacity: 0;
     animation: slideIn 1s ease-in-out forwards;
     animation-delay: 2s; /* Delay to start after the king splits */
+}
+
+.nah-id-win {
+    position: absolute;
+    top: -50%;
+    right: -150%;
+    width: 50vh; /* Adjust size as needed */
+    height: auto;
+}
+
+.menu-button, .play-again-button {
+    position: absolute;
+    width: 150px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    font-family: 'PANTON';
+    font-size: 1.2em;
+    color: #f1faee;
+    background-color: #a8dadc;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-button {
+    left: -400px; /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.play-again-button {
+    right: -400px; /* Adjust position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-button:hover, .play-again-button:hover {
+    background-color: #1d3557;
+    color: #a8dadc;
 }
