@@ -9,6 +9,7 @@ from generator import generate_genres_and_words
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretKey"
 socketio = SocketIO(app)
+from semantic import semantic_score 
 
 rooms = {}
 
@@ -118,6 +119,7 @@ def switchTurn():
                            moves1=game.get_past_moves1(), 
                            moves2=game.get_past_moves2())
 
+
 @app.route('/<path:path>')
 def catch_all(path):
     print(path)
@@ -129,19 +131,25 @@ def catch_all(path):
     elif check.lower() == game.get_target2().lower():
         game.add_past_move2("REACHED")
 
+    score = semantic_score(word, game.get_target1()) if game.getTurn() == "White" else semantic_score(word, game.get_target2())
+
     if game.getTurn() == "White":
         game.add_past_move1(word)
+        game.add_past_score1(score)
     else:
         game.add_past_move2(word)
+        game.add_past_score2(score)
+
+    top_moves, top_scores = game.top_ten(game.getTurn())
+
     return render_template('localGame.html', 
                            html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
                            moves1=game.get_past_moves1(), 
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
-    )
-
-
+                           top_moves = top_moves, 
+                            top_scores = top_scores)
 
 @socketio.on("asdf")
 def asdf(data):
