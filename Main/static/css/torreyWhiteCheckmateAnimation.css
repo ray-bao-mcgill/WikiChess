@@ -168,6 +168,13 @@ body {
     animation-delay: 4s;
 }
 
+.play-again-button {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%)
+    
+}
+
 .menu-button {
     left: -400px; /* Adjust position as needed */
     top: 50%;

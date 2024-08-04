@@ -177,6 +177,14 @@ body {
     animation-delay: 4s; /* Delay the fade-in by 4 seconds */
 }
 
+
+.play-again-button {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%)
+    
+}
+
 .menu-button {
     left: -400px; /* Adjust position as needed */
     top: 50%;
@@ -184,9 +192,11 @@ body {
 }
 
 .play-again-button {
-    right: -400px; /* Adjust position as needed */
+    right: 50%; /* Adjust position as needed */
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, 475%);
+    
 }
 
 .menu-button:hover, .play-again-button:hover {
