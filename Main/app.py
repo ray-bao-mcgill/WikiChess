@@ -25,7 +25,7 @@ def scrape_wikipedia_page(url):
         soup = BeautifulSoup(response.text, 'html.parser') #parse html content of the page 
 
         # Remove the sidebar with languages
-        if soup.find(id="p-lang"):
+        if soup.find(id="p-lang"):      
             soup.find(id="p-lang").decompose()
 
         # Remove any other language links
@@ -118,10 +118,12 @@ def switchTurn():
         previous_player = game.getTurn()
         game.switchTurn()
         if previous_player == "White":
+            game.setwMoves(3)
             if len(game.get_past_moves1()) == 0:
                 return render_template('index.html') #Black WINS
             return render_template('torreyBlackTurn.html', url = "/wiki/"+game.get_past_moves1()[-1])
         elif previous_player == "Black":
+            game.setbMoves(3)
             if len(game.get_past_moves2()) == 0:
                 return render_template('index.html') #White WINS
             return render_template('torreyWhiteTurn.html', url = "/wiki/"+game.get_past_moves2()[-1])
@@ -129,7 +131,7 @@ def switchTurn():
 @app.route('/<path:path>')
 def catch_all(path):
     print(path)
-    if path:
+    if len(path)>0:
         word = path.split('/')[1]
     if word:
         check = ('').join(word.split('_'))
@@ -156,11 +158,16 @@ def catch_all(path):
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
+                           bMoves = game.bMoves,
+                           wMoves = game.wMoves,
                            top_moves = top_moves, 
                            top_scores = top_scores)
         if word not in l1:
+            game.wMoves -= 1
             game.add_past_move1(word)
             game.add_past_score1(score)
+        if game.wMoves <= 0:
+            return redirect(url_for('switchTurn'))
         top_moves, top_scores = game.top_ten(game.getTurn())
         return render_template('localGame.html', 
                     html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
@@ -168,9 +175,11 @@ def catch_all(path):
                     moves2=game.get_past_moves2(),
                     scores1=game.get_past_scores1(),
                     scores2=game.get_past_scores2(),
+                    bMoves = game.bMoves,
+                    wMoves = game.wMoves,
                     top_moves = top_moves, 
                     top_scores = top_scores)
-    else:
+    elif game.getTurn() == "Black":
         if len(l1) != 0:
             if l1[-1] == word:
                 top_moves, top_scores = game.top_ten(game.getTurn())
@@ -180,11 +189,17 @@ def catch_all(path):
                            moves2=game.get_past_moves2(),
                            scores1=game.get_past_scores1(),
                            scores2=game.get_past_scores2(),
+                           bMoves = game.bMoves,
+                           wMoves = game.wMoves,
                            top_moves = top_moves, 
                            top_scores = top_scores)
         if word not in l2:
+            game.bMoves -= 1
             game.add_past_move2(word)
             game.add_past_score2(score)
+        
+        if game.bMoves == 0:
+            return redirect(url_for('switchTurn'))
         top_moves, top_scores = game.top_ten(game.getTurn())
         return render_template('localGame.html', 
                     html_content=scrape_wikipedia_page("https://en.wikipedia.org/" + path), 
@@ -192,6 +207,8 @@ def catch_all(path):
                     moves2=game.get_past_moves2(),
                     scores1=game.get_past_scores1(),
                     scores2=game.get_past_scores2(),
+                    bMoves = game.bMoves,
+                    wMoves = game.wMoves,
                     top_moves = top_moves, 
                     top_scores = top_scores)
 
