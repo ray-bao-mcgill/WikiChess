@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "CustomFont";
+    src: url(font/Panton-Trial-Black.ttf);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "CustomFont";
+    background-color: #f1faee;
+    color: #1d3557;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #457b9d;
+    color: #f1faee;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4 {
+    margin: 0 0 10px 0;
+}
+
+h2, h3, h4 {
+    color: #1d3557;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.objective, .setup, .gameplay, .winning, .strategy {
+    background-color: #a8dadc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.play-mode, .guess-mode, .example {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #457b9d;
+    color: #f1faee;
+    border-radius: 5px;
+}
+
+.tip {
+    background-color: #457b9d;
+    color: #f1faee;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.tip p {
+    margin: 0;
+}

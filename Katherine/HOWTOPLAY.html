@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Play WikiChess</title>
+    <link rel="stylesheet" href="HOWTOPLAY.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WikiChess: A Game of Semantics, Strategy, and Stress</h1>
+        </header>
+
+        <section class="objective">
+            <h2>Objective</h2>
+            <p>Race to either reach the Wikipedia page for your <strong>WikiWord</strong> or correctly guess your opponents <strong>WikiWord</strong>.</p>
+        </section>
+
+        <section class="setup">
+            <h2>Setup</h2>
+            <ul>
+                <li>Decide who will play as Black and who will play as White.</li>
+                <li>Click your chess piece to reveal your WikiWord—a secret word only you should know. Remember it well!</li>
+            </ul>
+        </section>
+
+        <section class="gameplay">
+            <h2>Gameplay</h2>
+            <p>Each turn, you can choose to either <strong>PLAY</strong> or <strong>GUESS</strong>.</p>
+
+            <div class="play-mode">
+                <h3>PLAY Mode</h3>
+                <ul>
+                    <li>You will start on a randomly selected Wikipedia page.</li>
+                    <li>Your goal is to navigate to your WikiWords page by clicking hyperlinks.</li>
+                    <li>You can click up to three hyperlinks per turn.</li>
+                    <li>After each click, youll see a semantic similarity score indicating how close the current pages title is to your WikiWord.</li>
+                    <li>You can view the last ten articles you clicked along with their semantic scores by holding <strong>TAB</strong>.</li>
+                    <li>Be quick—if you run out of time, your turn is skipped!</li>
+                </ul>
+            </div>
+
+            <div class="guess-mode">
+                <h3>GUESS Mode</h3>
+                <ul>
+                    <li>Attempt to guess your opponents WikiWord. You have three guesses per turn.</li>
+                    <li>Each guess provides a semantic similarity score to guide your future guesses.</li>
+                    <li>Use the article history and semantic scores shown when holding <strong>TAB</strong> to deduce your opponents target word based on their navigation path.</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>If your opponents target is BANANA, they might navigate through articles like Central America, Plantains, and Tropical Fruit. Pay attention to their clicks and semantic scores to infer their WikiWord.</p>
+            </div>
+        </section>
+
+        <section class="winning">
+            <h2>Winning the Game</h2>
+            <p>You win by either reaching your WikiWord page or correctly guessing your opponents WikiWord before they reach theirs.</p>
+        </section>
+
+        <section class="strategy">
+            <h2>Strategy Tips</h2>
+
+            <div class="tip">
+                <h3>Navigate Wisely in PLAY Mode!</h3>
+                <p>Your navigation paths semantic similarity indicates how closely related each pages title is to your WikiWord. Use this to your advantage by advancing towards your target without being too predictable. Balance your moves between progress and deception to keep your opponent guessing.</p>
+            </div>
+
+            <div class="tip">
+                <h3>Leverage the Tug-of-War Dynamic</h3>
+                <p>Since both players share the same Wikipedia path, the article you end on affects your opponents starting point in their next PLAY turn. Choose your landing article wisely—landing on a less useful page can disrupt your opponents strategy and force them to consider guessing instead. However, if you choose a dead end, your opponent may choose to GUESS and skip their PLAY turn—you’ll be forced to keep playing the article you tried to give them!</p>
+            </div>
+
+            <div class="tip">
+                <h3>Semantic Similarity: May Not Be the Edge You Think It Is</h3>
+                <p>Semantic similarity measures how closely related the pages title is to your target WikiWord, not how straightforward it is to navigate to; use this to make strategic moves that might seem less direct semantically, but can be advantageous to navigate through.</p>
+            </div>
+
+            <div class="tip">
+                <h3>To Advance or To Mislead?</h3>
+                <p>Its tempting to sprint towards your WikiWord, but consider taking detours that maintain a high semantic score but obscure your ultimate destination. This can mislead your opponent and buy you time to plan your next moves.</p>
+            </div>
+
+            <div class="tip">
+                <h3>Adapt to Your Opponent</h3>
+                <p>Pay close attention to your opponents navigation path and semantic scores. This information can offer valuable clues about their WikiWord and inform your GUESS strategy. Be ready to shift your tactics if their path becomes more apparent.</p>
+            </div>
+
+            <div class="tip">
+                <h3>Use GUESS Mode Strategically</h3>
+                <p>If youre stuck in PLAY mode or suspect you know your opponents WikiWord, use GUESS mode to gain an advantage. Your guesses provide semantic feedback to close in on their target. Choosing GUESS also automatically skips your PLAY turn and forces your opponent to click more links. You can get even more semantic feedback from this, however it may also be risky—the more PLAY moves you give them, the more likely they are to eventually navigate to their own WikiWord.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
