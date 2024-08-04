@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Moves</title>
+    <link rel="stylesheet" href="static/css/torreyWhiteTurn.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">White Moves</h1>
+        <div class="buttons">
+            <button class="button">Guess!!</button>
+            <button class="button" onclick="play()">Play!!</button>
+        </div>
+    </div>
+    <div id="url">{{ url }}</div>
+
+    <!-- Adding animated chess piece images -->
+    <div class="shape knight" style="top: 5%; left: 20%;"></div>
+    <div class="shape rook" style="top: 25%; left: 60%;"></div>
+    <div class="shape knight" style="top: 45%; left: 85%;"></div>
+    <div class="shape rook" style="top: 65%; left: 75%;"></div>
+    <div class="shape knight" style="top: 85%; left: 35%;"></div>
+    <div class="shape rook" style="top: 50%; left: 15%;"></div>
+
+    <script>
+    function play() {
+        window.location.href = document.getElementById('url').innerHTML;
+    }
+</script>
+</body>
+</html>
