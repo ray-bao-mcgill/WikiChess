@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #a8dadc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 1300px; /* Adjust the width to fit both boxes */
+}
+
+.container1 {
+    background: #f1faee;
+    border-radius: 10px 0 0 10px; /* Rounded corners on the left side only */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    width: 800px;
+    height: 400px;
+    margin-right: -1px; /* Adjust margin to ensure straight border */
+}
+
+.history-box {
+    background: #f1faee;
+    border-radius: 0 10px 10px 0; /* Rounded corners on the right side only */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    width: 500px;
+    height: 400px;
+}
+
+h1 {
+    font-size: 58px;
+    margin-bottom: 20px;
+    color: #1d3557;
+    font: Roboto, sans-serif;
+}
+
+h2 {
+    font-size: 36px;
+    color: #1d3557;
+    font: Roboto, sans-serif;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 12px 15px;
+    border: 2px solid #1d3557;  
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 10px;
+    font-size: 16px; 
+    transition: all 0.3s ease; 
+    margin: 30px 0 10px 0;
+}
+
+input[type="text"]::placeholder {
+    color: #a0a0a0; 
+    font-style: italic; 
+}
+
+input[type="text"]:focus {
+    border-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    outline: none; 
+}
+
+button {
+    position: relative;
+    cursor: pointer;
+    padding: 15px 25px;
+    background-color: #a8dadc; /* Background color */
+    border-radius: 20px; /* Round corners */
+    margin: 30px 0;
+    width: 220px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    border: none; /* Remove default border */
+    font-size: 1.5em; /* Font size */
+    color: #f1faee; /* Text color */
+    font-family: "CustomFont", sans-serif; /* Font family */
+}
+
+/* Hover effects for the submit button */
+button:hover {
+    background-color: #e63946; /* Hover background color */
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+.guess-count {
+    font-size: 30px; 
+    color: #1d3557;
+    font: Roboto, sans-serif;
+    margin-top: -30px;
+}
+
+#historyList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align text to the left for better readability */
+}
+
+#historyList li {
+    font-size: 30px;
+    color: #1d3557;
+    margin-bottom: 15%;
+}

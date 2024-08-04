@@ -118,10 +118,10 @@ def generate_genres_and_words(genres):
 
 # test 
 
-playing_genre, starting_genre, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
-print(f"Category: {playing_genre}")
-print(f"Starting word: {starting_genre}")
-print(f"Words: {word1}, {word2}")
+# playing_genre, starting_genre, word1, word2 = generate_genres_and_words(["animals", "sports", "foods", "professions", "sciences", "countries"])
+# print(f"Category: {playing_genre}")
+# print(f"Starting word: {starting_genre}")
+# print(f"Words: {word1}, {word2}")
 
 
 

@@ -132,11 +132,11 @@ body {
 
 .check-mate {
     position: absolute;
-    top: 60%;
-    left: -25%;
+    top: 50%;
+    left: -130%;
     transform: translate(-50%, -50%);
     font-family: 'PANTON';
-    font-size: 1.7em;
+    font-size: 4em;
     color: #1d3557;
     opacity: 0;
     animation: slideIn 1s ease-in-out forwards;
@@ -150,18 +150,31 @@ body {
     width: 50vh; /* Adjust size as needed */
     height: auto;
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .menu-button, .play-again-button {
     position: absolute;
     width: 150px; /* Adjust width as needed */
     height: 50px; /* Adjust height as needed */
     font-family: 'PANTON';
     font-size: 1.2em;
-    color: #f1faee;
+    color: #457b9d;
     background-color: #1d3557;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    opacity: 0;
     transition: background-color 0.3s;
+    animation: fadeIn 1s forwards;
+    animation-delay: 4s; /* Delay the fade-in by 4 seconds */
 }
 
 .menu-button {
