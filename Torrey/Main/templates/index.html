@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="static/css/torrey.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<style>
+    .bgSvg{
+        position: absolute;
+        top: 0;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index: -10;
+    }
+    .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #f9f9f9;
+            color: #000;
+            text-align: left;
+            border-radius: 5px;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: -10%; /* Position above the text */
+            left: 125%;
+            margin-left: -100px; /* Center the tooltip */
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 75%;
+            left: -2.5%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #a2a9b1 transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    .leftImg{
+        position: absolute;
+        top: 4%;
+        left: -4%;
+        width: 40%;
+        min-height: 100%;
+        background-image: url('static/images/knight.png');
+        background-size: cover;
+        background-position: center;
+    }
+    .rightImg{
+        position: absolute;
+        top: 4%;
+        right: -4%;
+        width: 40%;
+        height: 100%;
+        background-image: url('static/images/rook.png');
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+
+    
+<div class="leftImg"></div>
+<div class="rightImg"></div>
+
+<div class="homeContent">
+    <h1 class="title" id="wikichess-title">
+        <span class="tooltip"><span class="highlight first-letter">W</span>IKI<span class="highlight">C</span>HESS!<span class="tooltiptext">Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.</span></span>
+    </h1>
+    <br>
+    <div class="buttons">
+        <div class="button" onclick="localPlay()">
+            <span class="button-text">Local</span>
+        </div>
+        <div class="button" onclick="onlinePlay()">
+            <span class="button-text">Online</span>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function localPlay() {
+        // Add your local play functionality here
+       window.location.href = 'http://127.0.0.1:5000/local';
+    }
+
+    function onlinePlay() {
+        // Add your online play functionality here
+        window.location.href = 'http://127.0.0.1:5000/online';
+    }
+</script>
+
+{% endblock %}

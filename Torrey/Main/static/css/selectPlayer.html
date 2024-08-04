@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS King Chess Piece</title>
+    <link rel="stylesheet" href="selectPlayer.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="player-section" id="player1" onclick="selectPlayer(1)">
+            <img class="player-image" src="path/to/your/image1.png" alt="Player 1">
+            <div id="word1" class="turn-overlay"></div>
+            <div id="secret1" style="display:none;">Secret Word 1</div>
+        </div>
+        <div class="player-section" id="player2" onclick="selectPlayer(2)">
+            <img class="player-image" src="path/to/your/image2.png" alt="Player 2">
+            <div id="word2" class="turn-overlay"></div>
+            <div id="secret2" style="display:none;">Secret Word 2</div>
+        </div>
+    </div>
+    <script src="path/to/your/javascript.js"></script>
+</body>
+</html>
+
+<style>
+    @font-face {
+        font-family: "CustomFont";
+        src: url("font/Panton-Trial-Black.ttf") format('truetype');
+    }
+
+    .game-container {
+        margin: 0;
+        font-family: "CustomFont";
+        background-color: #5C91B4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .player-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, flex 0.3s ease;
+        position: relative;
+    }
+
+    .player-section:hover {
+        background-color: #457b9d;
+    }
+
+    .player-image {
+        width: 100%; /* Adjust the size as needed */
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .turn-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        transition: 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        z-index: 10;
+    }
+
+    #start-game {
+        padding: 20px 40px; /* Increased padding for larger button */
+        font-size: 30px; /* Increased font size */
+        background-color: #a8dadc; /* Changed background color */
+        color: #f1faee; /* Changed font color */
+        border: none;
+        border-radius: 20px; /* Rounded edges */
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 1s ease, transform 0.3s ease; /* Added transform transition */
+        font-family: "CustomFont"; /* Use custom font */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+
+    #start-game.show {
+        display: block;
+        opacity: 1;
+    }
+
+    #start-game:hover {
+        transform: scale(1.2); /* Increase size on hover */
+        background-color: #457b9d; /* Change hover background color */
+    }
+</style>
